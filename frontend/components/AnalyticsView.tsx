@@ -201,39 +201,50 @@ export default function AnalyticsView() {
       className="
         flex-1
         overflow-y-auto
-        px-5
-        py-5
+        px-3
+        md:px-5
+        py-3
+        md:py-5
         flex
         flex-col
-        gap-5
+        gap-3
+        md:gap-5
         custom-scrollbar
       "
     >
       {/*  
-          KPI GRID
+          KPI GRID - Responsive
         */}
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
         {/* CLEAN */}
 
         <div
           className="
-            rounded-xl
+            rounded-lg
+            md:rounded-xl
             border
             border-black/10
             bg-white/45
             backdrop-blur-xl
-            px-4
-            py-4
+            px-2.5
+            md:px-4
+            py-3
+            md:py-4
             flex
-            items-center
-            gap-3
+            flex-col
+            md:flex-row
+            md:items-center
+            gap-2
+            md:gap-3
           "
         >
           <div
             className="
-              w-11
-              h-11
+              w-8
+              md:w-11
+              h-8
+              md:h-11
               rounded-lg
               bg-[#020817]
               text-white
@@ -243,13 +254,14 @@ export default function AnalyticsView() {
               shrink-0
             "
           >
-            <ShieldCheck className="w-5 h-5" />
+            <ShieldCheck className="w-4 md:w-5 h-4 md:h-5" />
           </div>
 
           <div>
             <div
               className="
-                text-[10px]
+                text-[8px]
+                md:text-[10px]
                 font-bold
                 uppercase
                 tracking-wide
@@ -261,10 +273,12 @@ export default function AnalyticsView() {
 
             <div
               className="
-                text-2xl
+                text-lg
+                md:text-2xl
                 font-black
                 text-slate-900
-                mt-1
+                mt-0.5
+                md:mt-1
               "
             >
               {kpis.cleanPosts}
@@ -272,12 +286,13 @@ export default function AnalyticsView() {
 
             <div
               className="
-                text-[10px]
+                text-[7px]
+                md:text-[10px]
                 text-slate-500
                 mt-0.5
               "
             >
-              Clean posts indexed
+              Clean posts
             </div>
           </div>
         </div>
@@ -286,22 +301,30 @@ export default function AnalyticsView() {
 
         <div
           className="
-            rounded-xl
+            rounded-lg
+            md:rounded-xl
             border
             border-black/10
             bg-white/45
             backdrop-blur-xl
-            px-4
-            py-4
+            px-2.5
+            md:px-4
+            py-3
+            md:py-4
             flex
-            items-center
-            gap-3
+            flex-col
+            md:flex-row
+            md:items-center
+            gap-2
+            md:gap-3
           "
         >
           <div
             className="
-              w-11
-              h-11
+              w-8
+              md:w-11
+              h-8
+              md:h-11
               rounded-lg
               bg-[#020817]
               text-white
@@ -311,13 +334,14 @@ export default function AnalyticsView() {
               shrink-0
             "
           >
-            <TrendingUp className="w-5 h-5" />
+            <TrendingUp className="w-4 md:w-5 h-4 md:h-5" />
           </div>
 
           <div>
             <div
               className="
-                text-[10px]
+                text-[8px]
+                md:text-[10px]
                 font-bold
                 uppercase
                 tracking-wide
@@ -329,10 +353,12 @@ export default function AnalyticsView() {
 
             <div
               className="
-                text-2xl
+                text-lg
+                md:text-2xl
                 font-black
                 text-slate-900
-                mt-1
+                mt-0.5
+                md:mt-1
               "
             >
               {kpis.avgEngagement}
@@ -340,12 +366,13 @@ export default function AnalyticsView() {
 
             <div
               className="
-                text-[10px]
+                text-[7px]
+                md:text-[10px]
                 text-slate-500
                 mt-0.5
               "
             >
-              Cross-platform score
+              Score
             </div>
           </div>
         </div>
@@ -354,22 +381,30 @@ export default function AnalyticsView() {
 
         <div
           className="
-            rounded-xl
+            rounded-lg
+            md:rounded-xl
             border
             border-black/10
             bg-white/45
             backdrop-blur-xl
-            px-4
-            py-4
+            px-2.5
+            md:px-4
+            py-3
+            md:py-4
             flex
-            items-center
-            gap-3
+            flex-col
+            md:flex-row
+            md:items-center
+            gap-2
+            md:gap-3
           "
         >
           <div
             className="
-              w-11
-              h-11
+              w-8
+              md:w-11
+              h-8
+              md:h-11
               rounded-lg
               bg-[#020817]
               text-white
@@ -379,13 +414,14 @@ export default function AnalyticsView() {
               shrink-0
             "
           >
-            <Trash2 className="w-5 h-5" />
+            <Trash2 className="w-4 md:w-5 h-4 md:h-5" />
           </div>
 
           <div>
             <div
               className="
-                text-[10px]
+                text-[8px]
+                md:text-[10px]
                 font-bold
                 uppercase
                 tracking-wide
@@ -397,10 +433,12 @@ export default function AnalyticsView() {
 
             <div
               className="
-                text-2xl
+                text-lg
+                md:text-2xl
                 font-black
                 text-slate-900
-                mt-1
+                mt-0.5
+                md:mt-1
               "
             >
               {kpis.spamPosts}
@@ -408,12 +446,13 @@ export default function AnalyticsView() {
 
             <div
               className="
-                text-[10px]
+                text-[7px]
+                md:text-[10px]
                 text-slate-500
                 mt-0.5
               "
             >
-              Gibberish filtered
+              Filtered
             </div>
           </div>
         </div>
@@ -422,22 +461,30 @@ export default function AnalyticsView() {
 
         <div
           className="
-            rounded-xl
+            rounded-lg
+            md:rounded-xl
             border
             border-black/10
             bg-white/45
             backdrop-blur-xl
-            px-4
-            py-4
+            px-2.5
+            md:px-4
+            py-3
+            md:py-4
             flex
-            items-center
-            gap-3
+            flex-col
+            md:flex-row
+            md:items-center
+            gap-2
+            md:gap-3
           "
         >
           <div
             className="
-              w-11
-              h-11
+              w-8
+              md:w-11
+              h-8
+              md:h-11
               rounded-lg
               bg-[#020817]
               text-white
@@ -447,13 +494,14 @@ export default function AnalyticsView() {
               shrink-0
             "
           >
-            <Users className="w-5 h-5" />
+            <Users className="w-4 md:w-5 h-4 md:h-5" />
           </div>
 
           <div>
             <div
               className="
-                text-[10px]
+                text-[8px]
+                md:text-[10px]
                 font-bold
                 uppercase
                 tracking-wide
@@ -465,10 +513,12 @@ export default function AnalyticsView() {
 
             <div
               className="
-                text-2xl
+                text-lg
+                md:text-2xl
                 font-black
                 text-slate-900
-                mt-1
+                mt-0.5
+                md:mt-1
               "
             >
               {kpis.totalPosts}
@@ -476,40 +526,45 @@ export default function AnalyticsView() {
 
             <div
               className="
-                text-[10px]
+                text-[7px]
+                md:text-[10px]
                 text-slate-500
                 mt-0.5
               "
             >
-              Posts ingested
+              Ingested
             </div>
           </div>
         </div>
       </div>
 
       {/*  
-          CHARTS
+          CHARTS - Responsive Grid
         */}
 
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5">
         {/* SENTIMENT */}
 
         <div
           className="
-            rounded-xl
+            rounded-lg
+            md:rounded-xl
             border
             border-black/10
             bg-white/45
             backdrop-blur-xl
-            p-4
+            p-3
+            md:p-4
             flex
             flex-col
-            gap-4
+            gap-3
+            md:gap-4
           "
         >
           <h3
             className="
-              text-[11px]
+              text-[10px]
+              md:text-[11px]
               font-bold
               uppercase
               tracking-wide
@@ -519,7 +574,7 @@ export default function AnalyticsView() {
             Sentiment Bias
           </h3>
 
-          <div className="h-60">
+          <div className="h-40 md:h-60">
             {sentimentData.length > 0 ? (
               <ResponsiveContainer
                 width="100%"
@@ -530,9 +585,9 @@ export default function AnalyticsView() {
                     data={sentimentData}
                     cx="50%"
                     cy="50%"
-                    innerRadius={55}
-                    outerRadius={78}
-                    paddingAngle={3}
+                    innerRadius={35}
+                    outerRadius={55}
+                    paddingAngle={2}
                     dataKey="value"
                   >
                     {sentimentData.map(
@@ -545,12 +600,13 @@ export default function AnalyticsView() {
                     )}
                   </Pie>
 
-                  <Tooltip />
+                  <Tooltip fontSize={10} />
 
                   <Legend
                     verticalAlign="bottom"
-                    height={30}
+                    height={25}
                     iconType="circle"
+                    wrapperStyle={{ fontSize: '10px' }}
                   />
                 </PieChart>
               </ResponsiveContainer>
@@ -561,11 +617,11 @@ export default function AnalyticsView() {
                   flex
                   items-center
                   justify-center
-                  text-[11px]
+                  text-[10px]
                   text-slate-500
                 "
               >
-                No sentiment data
+                No data
               </div>
             )}
           </div>
@@ -575,20 +631,24 @@ export default function AnalyticsView() {
 
         <div
           className="
-            rounded-xl
+            rounded-lg
+            md:rounded-xl
             border
             border-black/10
             bg-white/45
             backdrop-blur-xl
-            p-4
+            p-3
+            md:p-4
             flex
             flex-col
-            gap-4
+            gap-3
+            md:gap-4
           "
         >
           <h3
             className="
-              text-[11px]
+              text-[10px]
+              md:text-[11px]
               font-bold
               uppercase
               tracking-wide
@@ -598,7 +658,7 @@ export default function AnalyticsView() {
             Platform Share
           </h3>
 
-          <div className="h-60">
+          <div className="h-40 md:h-60">
             {platformData.length > 0 ? (
               <ResponsiveContainer
                 width="100%"
@@ -609,7 +669,7 @@ export default function AnalyticsView() {
                     data={platformData}
                     cx="50%"
                     cy="50%"
-                    outerRadius={82}
+                    outerRadius={55}
                     labelLine={false}
                     dataKey="value"
                   >
@@ -623,7 +683,7 @@ export default function AnalyticsView() {
                     )}
                   </Pie>
 
-                  <Tooltip />
+                  <Tooltip fontSize={10} />
                 </PieChart>
               </ResponsiveContainer>
             ) : (
@@ -633,11 +693,11 @@ export default function AnalyticsView() {
                   flex
                   items-center
                   justify-center
-                  text-[11px]
+                  text-[10px]
                   text-slate-500
                 "
               >
-                No platform data
+                No data
               </div>
             )}
           </div>
@@ -647,20 +707,24 @@ export default function AnalyticsView() {
 
         <div
           className="
-            rounded-xl
+            rounded-lg
+            md:rounded-xl
             border
             border-black/10
             bg-white/45
             backdrop-blur-xl
-            p-4
+            p-3
+            md:p-4
             flex
             flex-col
-            gap-4
+            gap-3
+            md:gap-4
           "
         >
           <h3
             className="
-              text-[11px]
+              text-[10px]
+              md:text-[11px]
               font-bold
               uppercase
               tracking-wide
@@ -670,7 +734,7 @@ export default function AnalyticsView() {
             Top Categories
           </h3>
 
-          <div className="h-60">
+          <div className="h-40 md:h-60">
             {categoriesData.length > 0 ? (
               <ResponsiveContainer
                 width="100%"
@@ -686,7 +750,7 @@ export default function AnalyticsView() {
                   <XAxis
                     type="number"
                     stroke="#64748b"
-                    fontSize={10}
+                    fontSize={9}
                     tickLine={false}
                   />
 
@@ -694,12 +758,12 @@ export default function AnalyticsView() {
                     dataKey="category"
                     type="category"
                     stroke="#64748b"
-                    fontSize={10}
-                    width={80}
+                    fontSize={8}
+                    width={60}
                     tickLine={false}
                   />
 
-                  <Tooltip />
+                  <Tooltip fontSize={9} />
 
                   <Bar
                     dataKey="count"
@@ -715,11 +779,11 @@ export default function AnalyticsView() {
                   flex
                   items-center
                   justify-center
-                  text-[11px]
+                  text-[10px]
                   text-slate-500
                 "
               >
-                No category data
+                No data
               </div>
             )}
           </div>
@@ -727,39 +791,43 @@ export default function AnalyticsView() {
       </div>
 
       {/*  
-          LOWER GRID
+          LOWER GRID - Responsive
         */}
 
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5">
         {/* TRENDS */}
 
         <div
           className="
-            col-span-2
-            rounded-xl
+            md:col-span-2
+            rounded-lg
+            md:rounded-xl
             border
             border-black/10
             bg-white/45
             backdrop-blur-xl
-            p-4
+            p-3
+            md:p-4
             flex
             flex-col
-            gap-4
+            gap-3
+            md:gap-4
           "
         >
           <h3
             className="
-              text-[11px]
+              text-[10px]
+              md:text-[11px]
               font-bold
               uppercase
               tracking-wide
               text-slate-700
             "
           >
-            Volume & Engagement Trends
+            Trends
           </h3>
 
-          <div className="h-72">
+          <div className="h-40 md:h-72">
             {trendsData.length > 0 ? (
               <ResponsiveContainer
                 width="100%"
@@ -796,22 +864,23 @@ export default function AnalyticsView() {
                   <XAxis
                     dataKey="date"
                     stroke="#64748b"
-                    fontSize={10}
+                    fontSize={8}
                     tickLine={false}
                   />
 
                   <YAxis
                     stroke="#64748b"
-                    fontSize={10}
+                    fontSize={8}
                     tickLine={false}
                   />
 
-                  <Tooltip />
+                  <Tooltip fontSize={9} />
 
                   <Legend
                     verticalAlign="top"
-                    height={30}
+                    height={20}
                     iconType="circle"
+                    wrapperStyle={{ fontSize: '9px' }}
                   />
 
                   <Area
@@ -830,7 +899,7 @@ export default function AnalyticsView() {
                     dataKey="engagement"
                     stroke="#ef4444"
                     strokeWidth={2}
-                    dot={{ r: 3 }}
+                    dot={{ r: 2 }}
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -841,12 +910,11 @@ export default function AnalyticsView() {
                   flex
                   items-center
                   justify-center
-                  text-[11px]
+                  text-[10px]
                   text-slate-500
                 "
               >
                 Collect more data to visualize
-                trends.
               </div>
             )}
           </div>
@@ -856,30 +924,34 @@ export default function AnalyticsView() {
 
         <div
           className="
-            rounded-xl
+            rounded-lg
+            md:rounded-xl
             border
             border-black/10
             bg-white/45
             backdrop-blur-xl
-            p-4
+            p-3
+            md:p-4
             flex
             flex-col
-            gap-4
+            gap-3
+            md:gap-4
           "
         >
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-slate-800" />
+          <div className="flex items-center gap-1.5 md:gap-2">
+            <Sparkles className="w-3.5 md:w-4 h-3.5 md:h-4 text-slate-800" />
 
             <h3
               className="
-                text-[11px]
+                text-[10px]
+                md:text-[11px]
                 font-bold
                 uppercase
                 tracking-wide
                 text-slate-700
               "
             >
-              Trending Issues
+              Trending
             </h3>
           </div>
 
@@ -887,9 +959,11 @@ export default function AnalyticsView() {
             className="
               flex
               flex-col
-              gap-2
+              gap-1.5
+              md:gap-2
               overflow-y-auto
-              max-h-72
+              max-h-40
+              md:max-h-72
               pr-1
               custom-scrollbar
             "
@@ -904,20 +978,25 @@ export default function AnalyticsView() {
                     border-black/10
                     bg-white/60
                     hover:bg-white
-                    px-3
-                    py-3
+                    px-2
+                    md:px-3
+                    py-2
+                    md:py-3
                     flex
                     items-center
                     justify-between
-                    gap-3
+                    gap-2
+                    md:gap-3
                     transition-all
                   "
                 >
-                  <div className="flex items-start gap-2 min-w-0">
+                  <div className="flex items-start gap-1.5 md:gap-2 min-w-0">
                     <div
                       className="
-                        w-7
-                        h-7
+                        w-6
+                        md:w-7
+                        h-6
+                        md:h-7
                         rounded-md
                         bg-[#020817]
                         flex
@@ -926,13 +1005,14 @@ export default function AnalyticsView() {
                         shrink-0
                       "
                     >
-                      <Award className="w-3.5 h-3.5 text-white" />
+                      <Award className="w-3 md:w-3.5 h-3 md:h-3.5 text-white" />
                     </div>
 
                     <div className="min-w-0">
                       <div
                         className="
-                          text-[11px]
+                          text-[10px]
+                          md:text-[11px]
                           font-bold
                           text-slate-900
                           truncate
@@ -943,23 +1023,24 @@ export default function AnalyticsView() {
 
                       <div
                         className="
-                          text-[9px]
+                          text-[8px]
+                          md:text-[9px]
                           font-semibold
                           uppercase
                           tracking-wide
                           text-slate-500
-                          mt-1
+                          mt-0.5
                         "
                       >
-                        {topic.posts} duplicate
-                        occurrences
+                        {topic.posts} occ.
                       </div>
                     </div>
                   </div>
 
                   <div
                     className="
-                      text-[10px]
+                      text-[9px]
+                      md:text-[10px]
                       font-black
                       text-slate-900
                       shrink-0
@@ -975,12 +1056,13 @@ export default function AnalyticsView() {
                   flex
                   items-center
                   justify-center
-                  py-16
-                  text-[11px]
+                  py-8
+                  md:py-16
+                  text-[10px]
                   text-slate-500
                 "
               >
-                No active threads
+                No active
               </div>
             )}
           </div>

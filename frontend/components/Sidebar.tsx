@@ -12,21 +12,71 @@ import {
   HeartHandshake,
   Layers,
   AlertOctagon,
-  Compass
+  Compass,
+  Download
 } from 'lucide-react';
 
-export default function Sidebar() {
+interface SidebarProps {
+  onCloseMobile?: () => void;
+}
+
+export default function Sidebar({ onCloseMobile }: SidebarProps) {
   const store = useDashboardStore();
+
+  const getQueryString = () => {
+    const params = new URLSearchParams();
+
+    if (store.platform !== 'all') {
+      params.append('platform', store.platform);
+    }
+
+    if (store.category !== 'all') {
+      params.append('category', store.category);
+    }
+
+    if (store.language !== 'all') {
+      params.append('language', store.language);
+    }
+
+    if (store.sentiment !== 'all') {
+      params.append('sentiment', store.sentiment);
+    }
+
+    if (store.isGibberish) {
+      params.append('isGibberish', 'true');
+    }
+
+    if (store.search) {
+      params.append('search', store.search);
+    }
+
+    return params.toString();
+  };
+
+  const handleExportCsv = () => {
+    window.open(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/export/csv?${getQueryString()}`,
+      '_blank'
+    );
+  };
+
+  const handleExportPdf = () => {
+    window.open(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/export/pdf?${getQueryString()}`,
+      '_blank'
+    );
+  };
 
   const handlePlatformChange = (p: typeof store.platform) => {
     store.setPlatform(p);
+    onCloseMobile?.();
   };
 
   return (
     <aside
       className="
-        w-[290px]
-        h-screen
+        w-full
+        h-full
         px-4
         py-4
         flex
@@ -38,6 +88,7 @@ export default function Sidebar() {
         backdrop-blur-xl
         shadow-[0_4px_24px_rgba(15,23,42,0.06)]
         select-none
+        overflow-y-auto
       "
     >
       {/*  
@@ -110,7 +161,10 @@ export default function Sidebar() {
         </div>
 
         <button
-          onClick={store.resetFilters}
+          onClick={() => {
+            store.resetFilters();
+            onCloseMobile?.();
+          }}
           className="
             flex
             items-center
@@ -257,9 +311,10 @@ export default function Sidebar() {
 
           <select
             value={store.category}
-            onChange={(e) =>
-              store.setCategory(e.target.value as DashboardState['category'])
-            }
+            onChange={(e) => {
+              store.setCategory(e.target.value as DashboardState['category']);
+              onCloseMobile?.();
+            }}
             className="
               h-10
               px-3
@@ -299,7 +354,10 @@ export default function Sidebar() {
 
           <select
             value={store.language}
-            onChange={(e) => store.setLanguage(e.target.value)}
+            onChange={(e) => {
+              store.setLanguage(e.target.value);
+              onCloseMobile?.();
+            }}
             className="
               h-10
               px-3
@@ -344,7 +402,10 @@ export default function Sidebar() {
               return (
                 <button
                   key={s}
-                  onClick={() => store.setSentiment(s)}
+                  onClick={() => {
+                    store.setSentiment(s);
+                    onCloseMobile?.();
+                  }}
                   className={`
                     h-10
                     px-3
@@ -469,6 +530,60 @@ export default function Sidebar() {
                 }
               `}
             />
+          </button>
+        </div>
+
+        <div className="md:hidden mt-4 pt-4 border-t border-black/10 flex flex-col gap-2">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-700">
+            Export data
+          </div>
+
+          <button
+            onClick={handleExportCsv}
+            className="
+              w-full
+              h-11
+              rounded-lg
+              border
+              border-black/10
+              bg-white/75
+              text-slate-800
+              text-[11px]
+              font-semibold
+              flex
+              items-center
+              justify-center
+              gap-2
+              transition-all
+              hover:bg-white
+            "
+          >
+            <Download className="w-4 h-4" />
+            CSV
+          </button>
+
+          <button
+            onClick={handleExportPdf}
+            className="
+              w-full
+              h-11
+              rounded-lg
+              border
+              border-black/10
+              bg-white/75
+              text-slate-800
+              text-[11px]
+              font-semibold
+              flex
+              items-center
+              justify-center
+              gap-2
+              transition-all
+              hover:bg-white
+            "
+          >
+            <Download className="w-4 h-4" />
+            PDF
           </button>
         </div>
       </div>

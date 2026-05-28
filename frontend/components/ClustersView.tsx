@@ -184,36 +184,45 @@ export default function ClustersView() {
       className="
         flex-1
         overflow-y-auto
-        px-5
-        py-5
+        px-3
+        md:px-5
+        py-3
+        md:py-5
         flex
         flex-col
-        gap-4
+        gap-3
+        md:gap-4
         custom-scrollbar
       "
     >
       {/*  
-          INTRO
+          INTRO - Responsive
         */}
 
       <div
         className="
           flex
           items-start
-          gap-3
-          rounded-xl
+          gap-2
+          md:gap-3
+          rounded-lg
+          md:rounded-xl
           border
           border-black/10
           bg-white/45
           backdrop-blur-xl
-          px-4
-          py-4
+          px-3
+          md:px-4
+          py-3
+          md:py-4
         "
       >
         <div
           className="
-            w-10
-            h-10
+            w-8
+            md:w-10
+            h-8
+            md:h-10
             rounded-lg
             bg-[#020817]
             flex
@@ -222,13 +231,14 @@ export default function ClustersView() {
             shrink-0
           "
         >
-          <Network className="w-5 h-5 text-white" />
+          <Network className="w-4 md:w-5 h-4 md:h-5 text-white" />
         </div>
 
         <div>
           <h2
             className="
-              text-[13px]
+              text-[12px]
+              md:text-[13px]
               font-bold
               text-slate-900
             "
@@ -238,8 +248,10 @@ export default function ClustersView() {
 
           <p
             className="
-              mt-1
-              text-[11px]
+              mt-0.5
+              md:mt-1
+              text-[10px]
+              md:text-[11px]
               leading-relaxed
               text-slate-600
             "
@@ -267,19 +279,19 @@ export default function ClustersView() {
             text-slate-600
           "
         >
-          <MessageSquare className="w-10 h-10 text-slate-400" />
+          <MessageSquare className="w-8 md:w-10 h-8 md:h-10 text-slate-400" />
 
-          <p className="text-sm font-semibold">
+          <p className="text-[11px] md:text-sm font-semibold">
             No clusters detected
           </p>
 
-          <p className="text-xs text-center max-w-xs">
+          <p className="text-[10px] md:text-xs text-center max-w-xs">
             Related threads will appear here as
             new posts are processed.
           </p>
         </div>
       ) : (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2 md:gap-3">
           {clustersList.map((cluster) => {
             const isExpanded =
               expandedClusterId === cluster.id;
@@ -303,7 +315,8 @@ export default function ClustersView() {
               <div
                 key={cluster.id}
                 className="
-                  rounded-xl
+                  rounded-lg
+                  md:rounded-xl
                   border
                   border-black/10
                   bg-white/45
@@ -312,7 +325,7 @@ export default function ClustersView() {
                 "
               >
                 {/*  
-                    HEADER
+                    HEADER - Responsive
                   */}
 
                 <div
@@ -320,12 +333,15 @@ export default function ClustersView() {
                     toggleExpand(cluster.id)
                   }
                   className="
-                    px-4
-                    py-4
+                    px-3
+                    md:px-4
+                    py-3
+                    md:py-4
                     flex
                     items-center
                     justify-between
-                    gap-4
+                    gap-2
+                    md:gap-4
                     cursor-pointer
                     transition-all
                     hover:bg-white/30
@@ -336,7 +352,8 @@ export default function ClustersView() {
                   <div className="flex-1 min-w-0">
                     <h3
                       className="
-                        text-[13px]
+                        text-[12px]
+                        md:text-[13px]
                         font-bold
                         text-slate-900
                         truncate
@@ -347,12 +364,15 @@ export default function ClustersView() {
 
                     <div
                       className="
-                        mt-1.5
+                        mt-1
+                        md:mt-1.5
                         flex
                         flex-wrap
                         items-center
-                        gap-2
-                        text-[10px]
+                        gap-1
+                        md:gap-2
+                        text-[9px]
+                        md:text-[10px]
                         font-semibold
                         text-slate-600
                       "
@@ -361,17 +381,20 @@ export default function ClustersView() {
 
                       <span
                         className="
-                          px-2
-                          h-5
+                          px-1.5
+                          md:px-2
+                          h-4
+                          md:h-5
                           rounded-md
                           bg-[#020817]
                           text-white
                           flex
                           items-center
+                          text-nowrap
                         "
                       >
                         {cluster.posts.length}{' '}
-                        posts
+                        <span className="hidden sm:inline ml-0.5">posts</span>
                       </span>
 
                       {/* ENGAGEMENT */}
@@ -380,27 +403,34 @@ export default function ClustersView() {
                         className="
                           flex
                           items-center
-                          gap-1
+                          gap-0.5
+                          md:gap-1
+                          hidden xs:inline-flex
                         "
                       >
-                        <TrendingUp className="w-3 h-3" />
-                        {totalScore} engagement
+                        <TrendingUp className="w-2.5 md:w-3 h-2.5 md:h-3" />
+                        <span className="hidden sm:inline">{totalScore} eng</span>
+                        <span className="sm:hidden">{totalScore}</span>
                       </span>
 
                       {/* PLATFORMS */}
 
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-0.5 md:gap-1 flex-wrap">
                         {platforms.map((plat) => (
                           <span
                             key={plat}
                             className="
-                              px-1.5
-                              py-0.5
+                              px-1
+                              md:px-1.5
+                              py-0
+                              md:py-0.5
                               rounded
                               bg-slate-100
                               border
                               border-black/8
                               lowercase
+                              text-[8px]
+                              md:text-[9px]
                             "
                           >
                             {plat}
@@ -414,15 +444,15 @@ export default function ClustersView() {
 
                   <div className="text-slate-600 shrink-0">
                     {isExpanded ? (
-                      <ChevronUp className="w-4 h-4" />
+                      <ChevronUp className="w-3.5 md:w-4 h-3.5 md:h-4" />
                     ) : (
-                      <ChevronDown className="w-4 h-4" />
+                      <ChevronDown className="w-3.5 md:w-4 h-3.5 md:h-4" />
                     )}
                   </div>
                 </div>
 
                 {/*  
-                    POSTS
+                    POSTS - Responsive
                   */}
 
                 {isExpanded && (
@@ -431,11 +461,14 @@ export default function ClustersView() {
                       border-t
                       border-black/8
                       bg-black/[0.015]
-                      px-3
-                      py-3
+                      px-2
+                      md:px-3
+                      py-2
+                      md:py-3
                       flex
                       flex-col
-                      gap-2
+                      gap-1.5
+                      md:gap-2
                     "
                   >
                     {cluster.posts.map((post) => (
@@ -447,8 +480,10 @@ export default function ClustersView() {
                           )
                         }
                         className="
-                          px-3
-                          py-3
+                          px-2
+                          md:px-3
+                          py-2
+                          md:py-3
                           rounded-lg
                           border
                           border-black/8
@@ -457,9 +492,12 @@ export default function ClustersView() {
                           cursor-pointer
                           transition-all
                           flex
-                          items-center
-                          justify-between
-                          gap-3
+                          flex-col
+                          md:flex-row
+                          md:items-center
+                          md:justify-between
+                          gap-2
+                          md:gap-3
                         "
                       >
                         {/* LEFT */}
@@ -467,7 +505,8 @@ export default function ClustersView() {
                         <div className="flex-1 min-w-0">
                           <p
                             className="
-                              text-[11px]
+                              text-[10px]
+                              md:text-[11px]
                               text-slate-800
                               font-medium
                               line-clamp-1
@@ -479,28 +518,31 @@ export default function ClustersView() {
 
                           <div
                             className="
-                              mt-1.5
+                              mt-1
                               flex
                               items-center
-                              gap-2
-                              text-[10px]
+                              gap-1
+                              md:gap-2
+                              text-[8px]
+                              md:text-[10px]
                               text-slate-500
+                              flex-wrap
                             "
                           >
-                            <span className="font-semibold text-slate-700">
+                            <span className="font-semibold text-slate-700 truncate">
                               @{post.author}
                             </span>
 
-                            <span>•</span>
+                            <span className="hidden sm:inline">•</span>
 
-                            <span className="capitalize">
+                            <span className="capitalize hidden sm:inline">
                               {post.platform}
                             </span>
 
-                            <span>•</span>
+                            <span className="hidden sm:inline">•</span>
 
-                            <span className="flex items-center gap-1">
-                              <Clock className="w-2.5 h-2.5" />
+                            <span className="flex items-center gap-0.5 md:gap-1">
+                              <Clock className="w-2 md:w-2.5 h-2 md:h-2.5 flex-shrink-0" />
 
                               {new Date(
                                 post.created_at
@@ -511,20 +553,24 @@ export default function ClustersView() {
 
                         {/* RIGHT */}
 
-                        <div className="flex items-center gap-2 shrink-0">
+                        <div className="flex items-center gap-1 md:gap-2 shrink-0">
                           {/* SENTIMENT */}
 
                           <span
                             className={`
-                              px-2
-                              h-5
+                              px-1
+                              md:px-2
+                              h-4
+                              md:h-5
                               rounded-md
-                              text-[9px]
+                              text-[8px]
+                              md:text-[9px]
                               font-bold
                               uppercase
                               border
                               flex
                               items-center
+                              text-nowrap
                               ${
                                 post.sentiment ===
                                 'positive'
@@ -543,13 +589,16 @@ export default function ClustersView() {
 
                           <span
                             className="
-                              px-2
-                              h-5
+                              px-1
+                              md:px-2
+                              h-4
+                              md:h-5
                               rounded-md
                               bg-slate-100
                               border
                               border-black/8
-                              text-[9px]
+                              text-[8px]
+                              md:text-[9px]
                               font-bold
                               text-slate-700
                               flex

@@ -138,23 +138,28 @@ export default function Header() {
     <header
       className="
         h-16
-        px-5
+        px-2
+        md:px-5
         border-b
         border-black/10
         bg-white/25
         backdrop-blur-xl
         flex
-        items-center
-        justify-between
-        gap-4
+        flex-col
+        md:flex-row
+        md:items-center
+        md:justify-between
+        gap-2
+        md:gap-4
         select-none
+        overflow-hidden
       "
     >
       {/*  
-          SEARCH
+          SEARCH - Mobile Responsive
         */}
 
-      <div className="flex-1 max-w-sm relative flex items-center">
+      <div className="flex-1 max-w-sm relative flex items-center w-full md:w-auto order-2 md:order-1">
         <input
           type="text"
           value={searchInput}
@@ -162,17 +167,21 @@ export default function Header() {
             setSearchInput(e.target.value)
           }
           onKeyDown={handleKeyDown}
-          placeholder="Search feeds..."
+          placeholder="Search..."
           className="
             w-full
-            h-10
-            pl-9
-            pr-20
+            h-9
+            md:h-10
+            pl-8
+            md:pl-9
+            pr-16
+            md:pr-20
             rounded-lg
             border
             border-black/10
             bg-white/60
-            text-[12px]
+            text-[11px]
+            md:text-[12px]
             font-medium
             text-slate-800
             placeholder:text-slate-500
@@ -185,8 +194,8 @@ export default function Header() {
 
         {/* ICON */}
 
-        <div className="absolute left-3 text-slate-500">
-          <Search className="w-3.5 h-3.5" />
+        <div className="absolute left-2.5 md:left-3 text-slate-500">
+          <Search className="w-3 md:w-3.5 h-3 md:h-3.5" />
         </div>
 
         {/* BUTTON */}
@@ -195,30 +204,36 @@ export default function Header() {
           onClick={triggerSearch}
           className="
             absolute
-            right-1.5
-            h-7
-            px-3
+            right-1
+            md:right-1.5
+            h-6
+            md:h-7
+            px-2
+            md:px-3
             rounded-md
             bg-[#020817]
             text-white
-            text-[11px]
+            text-[10px]
+            md:text-[11px]
             font-semibold
             hover:bg-slate-800
             transition-all
             cursor-pointer
           "
         >
-          Search
+          <span className="hidden md:inline">Search</span>
+          <span className="md:hidden">Go</span>
         </button>
       </div>
 
       {/*  
-          NAVIGATION
+          NAVIGATION - Mobile Responsive
         */}
 
       <div
         className="
-          flex
+          hidden
+          md:flex
           items-center
           gap-1
           p-1
@@ -226,6 +241,12 @@ export default function Header() {
           border
           border-black/10
           bg-white/45
+          order-1
+          md:order-2
+          w-full
+          md:w-auto
+          overflow-x-auto
+          md:overflow-visible
         "
       >
         {/* FEED */}
@@ -235,16 +256,22 @@ export default function Header() {
             store.setActiveTab('feed')
           }
           className={`
-            h-9
-            px-3
+            h-8
+            md:h-9
+            px-2
+            md:px-3
             rounded-md
             flex
             items-center
-            gap-1.5
-            text-[11px]
+            gap-1
+            md:gap-1.5
+            text-[10px]
+            md:text-[11px]
             font-semibold
             transition-all
             cursor-pointer
+            whitespace-nowrap
+            flex-shrink-0
             ${
               store.activeTab === 'feed'
                 ? `
@@ -259,8 +286,8 @@ export default function Header() {
             }
           `}
         >
-          <Rss className="w-3.5 h-3.5" />
-          Feed
+          <Rss className="w-3 md:w-3.5 h-3 md:h-3.5" />
+          <span className="hidden sm:inline">Feed</span>
         </button>
 
         {/* CLUSTERS */}
@@ -270,16 +297,22 @@ export default function Header() {
             store.setActiveTab('clusters')
           }
           className={`
-            h-9
-            px-3
+            h-8
+            md:h-9
+            px-2
+            md:px-3
             rounded-md
             flex
             items-center
-            gap-1.5
-            text-[11px]
+            gap-1
+            md:gap-1.5
+            text-[10px]
+            md:text-[11px]
             font-semibold
             transition-all
             cursor-pointer
+            whitespace-nowrap
+            flex-shrink-0
             ${
               store.activeTab === 'clusters'
                 ? `
@@ -294,8 +327,8 @@ export default function Header() {
             }
           `}
         >
-          <Network className="w-3.5 h-3.5" />
-          Clusters
+          <Network className="w-3 md:w-3.5 h-3 md:h-3.5" />
+          <span className="hidden sm:inline">Clusters</span>
         </button>
 
         {/* ANALYTICS */}
@@ -305,16 +338,22 @@ export default function Header() {
             store.setActiveTab('analytics')
           }
           className={`
-            h-9
-            px-3
+            h-8
+            md:h-9
+            px-2
+            md:px-3
             rounded-md
             flex
             items-center
-            gap-1.5
-            text-[11px]
+            gap-1
+            md:gap-1.5
+            text-[10px]
+            md:text-[11px]
             font-semibold
             transition-all
             cursor-pointer
+            whitespace-nowrap
+            flex-shrink-0
             ${
               store.activeTab === 'analytics'
                 ? `
@@ -329,16 +368,16 @@ export default function Header() {
             }
           `}
         >
-          <BarChart3 className="w-3.5 h-3.5" />
-          Analytics
+          <BarChart3 className="w-3 md:w-3.5 h-3 md:h-3.5" />
+          <span className="hidden sm:inline">Analytics</span>
         </button>
       </div>
 
       {/*  
-          ACTIONS
+          ACTIONS - Desktop Only
         */}
 
-      <div className="flex items-center gap-2">
+      <div className="hidden md:flex items-center gap-1 md:gap-2 order-3 w-full md:w-auto overflow-x-auto md:overflow-visible">
         {/* SCRAPER */}
 
         <button
@@ -347,31 +386,38 @@ export default function Header() {
           }
           disabled={scrapeMutation.isPending}
           className="
-            h-10
-            px-4
+            h-8
+            md:h-10
+            px-2
+            md:px-4
             rounded-lg
             bg-[#020817]
             hover:bg-slate-800
             disabled:opacity-50
             flex
             items-center
-            gap-2
+            gap-1
+            md:gap-2
             text-white
-            text-[11px]
+            text-[10px]
+            md:text-[11px]
             font-semibold
             transition-all
             cursor-pointer
+            whitespace-nowrap
+            flex-shrink-0
           "
+          title="Trigger scraper"
         >
           {scrapeMutation.isPending ? (
             <>
-              <Loader2 className="w-3.5 h-3.5 animate-spin" />
-              Scraping...
+              <Loader2 className="w-3 md:w-3.5 h-3 md:h-3.5 animate-spin" />
+              <span className="hidden md:inline">Scraping...</span>
             </>
           ) : (
             <>
-              <RefreshCw className="w-3.5 h-3.5" />
-              Trigger Scraper
+              <RefreshCw className="w-3 md:w-3.5 h-3 md:h-3.5" />
+              <span className="hidden md:inline">Scraper</span>
             </>
           )}
         </button>
@@ -394,12 +440,15 @@ export default function Header() {
           <button
             onClick={handleExportCsv}
             className="
-              h-10
-              px-3
+              h-8
+              md:h-10
+              px-2
+              md:px-3
               flex
               items-center
-              gap-1.5
-              text-[11px]
+              gap-1
+              text-[10px]
+              md:text-[11px]
               font-semibold
               text-slate-700
               hover:bg-white/70
@@ -408,23 +457,26 @@ export default function Header() {
             "
             title="Export CSV"
           >
-            <Download className="w-3.5 h-3.5" />
-            CSV
+            <Download className="w-3 md:w-3.5 h-3 md:h-3.5" />
+            <span className="hidden md:inline">CSV</span>
           </button>
 
-          <div className="w-px h-4 bg-black/10" />
+          <div className="w-px h-3 md:h-4 bg-black/10" />
 
           {/* PDF */}
 
           <button
             onClick={handleExportPdf}
             className="
-              h-10
-              px-3
+              h-8
+              md:h-10
+              px-2
+              md:px-3
               flex
               items-center
-              gap-1.5
-              text-[11px]
+              gap-1
+              text-[10px]
+              md:text-[11px]
               font-semibold
               text-slate-700
               hover:bg-white/70
@@ -433,8 +485,8 @@ export default function Header() {
             "
             title="Export PDF"
           >
-            <Download className="w-3.5 h-3.5" />
-            PDF
+            <Download className="w-3 md:w-3.5 h-3 md:h-3.5" />
+            <span className="hidden md:inline">PDF</span>
           </button>
         </div>
       </div>
