@@ -147,7 +147,7 @@ export default function PostDetailsModal() {
   /* TRANSLATE CLICK */
 
   const handleTranslateClick = (langCode: LanguageCode) => { setSelectedLang(langCode); setTranslatedText(null); const cached = data?.translations?.find((t) => t.language === langCode); if (cached) { setTranslatedText(cached.translated_text); } else { translateMutation.mutate(langCode); } };
-  const postDetail = data?.post || {};
+  const postDetail: Post = data?.post ?? ({} as Post);
 
   const siblings: Post[] =
     data?.clusterSiblings ?? [];

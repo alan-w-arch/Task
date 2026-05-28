@@ -44,6 +44,7 @@ export interface Post {
   sentiment?: Sentiment;
   language?: string;
   engagement_score: number;
+  cluster_name?: string;
   cluster_id?: string;
   source_url: string;
   region?: string;
