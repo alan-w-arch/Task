@@ -146,8 +146,8 @@ Start both the NestJS backend and Next.js frontend concurrently:
 npm run dev
 ```
 * **Frontend:** [http://localhost:3000](http://localhost:3000)
-* **Backend:** [ NEXT_PUBLIC_API_URL]( NEXT_PUBLIC_API_URL)
-* **Swagger API Documentation:** [ NEXT_PUBLIC_API_URL/swagger]( NEXT_PUBLIC_API_URL/swagger)
+* **Backend:** [http://localhost:3001](http://localhost:3001)
+* **Swagger API Documentation:** [http://localhost:3001/swagger](http://localhost:3001/swagger)
 
 ---
 
@@ -226,3 +226,6 @@ This frontend is a standalone Next.js app inside the `frontend` folder.
   * `NEXT_PUBLIC_API_URL` — the full URL of the deployed backend API
 
 For Vercel, set the project root directory to `frontend`, the build command to `npm run build`, and make sure `NEXT_PUBLIC_API_URL` is configured in environment variables.
+
+
+## Deployed app Url: [https://task-eight-opal.vercel.app/](https://task-eight-opal.vercel.app/)
