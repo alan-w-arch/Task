@@ -175,15 +175,54 @@ npm run dev
 
 ## ☁️ Deployment Guides
 
-### Backend (Railway / Render / Docker)
-* **Build Command:** `npm run build -w backend`
-* **Start Command:** `npm run start:prod -w backend`
-* Ensure the environment variables (`DATABASE_URL`, `REDIS_HOST`, `REDIS_PORT`, `GEMINI_API_KEY`) are set up in the Railway/Render configuration panel.
-* For Docker deployment, you can package the monorepo inside a Multi-stage Dockerfile utilizing workspaces.
+### Backend Deployment
+This backend is a standalone NestJS service inside the `backend` folder.
 
-### Frontend (Vercel)
-* **Framework Preset:** Next.js
-* **Root Directory:** `frontend`
-* **Build Command:** `npm run build`
-* **Output Directory:** `.next`
-* Configure `NEXT_PUBLIC_API_URL` to point to your deployed backend gateway URL.
+* Navigate to the backend folder:
+  ```bash
+  cd backend
+  ```
+* Install dependencies:
+  ```bash
+  npm install
+  ```
+* Build for production:
+  ```bash
+  npm run build
+  ```
+* Start the production server:
+  ```bash
+  npm run start:prod
+  ```
+* Required environment variables:
+  * `DATABASE_URL`
+  * `REDIS_HOST`
+  * `REDIS_PORT`
+  * `GEMINI_API_KEY`
+  * `PORT` (optional, default depends on your host)
+
+For platform deployments such as Railway or Render, use the backend folder as the service root and set the build command to `npm run build` and the start command to `npm run start:prod`.
+
+### Frontend Deployment
+This frontend is a standalone Next.js app inside the `frontend` folder.
+
+* Navigate to the frontend folder:
+  ```bash
+  cd frontend
+  ```
+* Install dependencies:
+  ```bash
+  npm install
+  ```
+* Build the production app:
+  ```bash
+  npm run build
+  ```
+* Start the production server:
+  ```bash
+  npm run start
+  ```
+* Required environment variable:
+  * `NEXT_PUBLIC_API_URL` — the full URL of the deployed backend API
+
+For Vercel, set the project root directory to `frontend`, the build command to `npm run build`, and make sure `NEXT_PUBLIC_API_URL` is configured in environment variables.

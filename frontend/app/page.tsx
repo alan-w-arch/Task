@@ -25,15 +25,15 @@ export default function Home() {
         bg-[linear-gradient(90deg,rgba(160,216,242,1)_0%,rgba(200,230,212,1)_27%,rgba(215,252,223,1)_64%,rgba(250,242,217,1)_100%)]
       "
     >
-      {/* =========================
+      {/*  
           LEFT SIDEBAR
-      ========================= */}
+        */}
 
       <Sidebar />
 
-      {/* =========================
+      {/*  
           MAIN DASHBOARD
-      ========================= */}
+        */}
 
       <main
         className="
@@ -46,15 +46,15 @@ export default function Home() {
           backdrop-blur-[2px]
         "
       >
-        {/* =========================
+        {/*  
             TOP HEADER
-        ========================= */}
+          */}
 
         <Header />
 
-        {/* =========================
+        {/*  
             DYNAMIC VIEW
-        ========================= */}
+          */}
 
         <div className="flex-1 overflow-hidden relative flex flex-col">
           {store.activeTab === 'feed' && <FeedView />}
@@ -63,9 +63,9 @@ export default function Home() {
         </div>
       </main>
 
-      {/* =========================
+      {/*  
           GLOBAL MODAL
-      ========================= */}
+        */}
 
       <PostDetailsModal />
     </div>

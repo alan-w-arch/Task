@@ -12,7 +12,6 @@ import {
   HeartHandshake,
   Layers,
   AlertOctagon,
-  Twitter,
   Youtube,
   Compass
 } from 'lucide-react';
@@ -42,9 +41,9 @@ export default function Sidebar() {
         select-none
       "
     >
-      {/* =========================
+      {/*  
           BRAND HEADER
-      ========================= */}
+        */}
 
       <div className="flex items-center gap-3 pb-4 border-b border-black/10">
         <div
@@ -90,9 +89,9 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* =========================
+      {/*  
           FILTER HEADER
-      ========================= */}
+        */}
 
       <div className="flex items-center justify-between">
         <div
@@ -133,9 +132,9 @@ export default function Sidebar() {
         </button>
       </div>
 
-      {/* =========================
+      {/*  
           FILTERS
-      ========================= */}
+        */}
 
       <div
         className="
@@ -147,9 +146,9 @@ export default function Sidebar() {
           custom-scrollbar
         "
       >
-        {/* =========================
+        {/*  
             PLATFORM
-        ========================= */}
+          */}
 
         <div className="flex flex-col gap-2">
           <label className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-800">
@@ -166,38 +165,78 @@ export default function Sidebar() {
                   key={p}
                   onClick={() => handlePlatformChange(p)}
                   className={`
-                    h-10
-                    rounded-lg
-                    border
-                    flex
-                    items-center
-                    justify-center
-                    gap-1.5
-                    text-[11px]
-                    font-semibold
-                    transition-all
-                    cursor-pointer
-                    ${
-                      isActive
-                        ? `
-                          bg-[#020817]
-                          text-white
-                          border-[#020817]
-                          shadow-[0_4px_14px_rgba(2,8,23,0.16)]
-                        `
-                        : `
-                          bg-white/60
-                          text-slate-700
-                          border-black/8
-                          hover:bg-white/90
-                        `
+    h-10
+    rounded-lg
+    border
+    flex
+    items-center
+    justify-center
+    gap-1.5
+    text-[11px]
+    font-semibold
+    transition-all
+    cursor-pointer
+    ${isActive
+                      ? `
+          bg-[#020817]
+          text-white
+          border-[#020817]
+          shadow-[0_4px_14px_rgba(2,8,23,0.16)]
+        `
+                      : `
+          bg-white/60
+          text-slate-700
+          border-black/8
+          hover:bg-white/90
+        `
                     }
-                  `}
+  `}
                 >
-                  {p === 'twitter' && <Twitter className="w-3.5 h-3.5" />}
-                  {p === 'youtube' && <Youtube className="w-3.5 h-3.5" />}
+                  {/* TWITTER/X */}
+                  {p === 'twitter' && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 16 16"
+                      className="w-3.5 h-3.5"
+                    >
+                      <path d="M12.6 0.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H0.316l5.733-6.57L0 0.75h5.063l3.495 4.633L12.601 0.75Zm-0.86 13.028h1.36L4.323 2.145H2.865z" />
+                    </svg>
+                  )}
+
+                  {/* YOUTUBE */}
+                  {p === 'youtube' && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="-0.145 -0.145 4 4"
+                      className="w-4 h-4"
+                    >
+                      <g>
+                        <path
+                          d="M0.3021 2.40726c0.044255 0.38027500000000003 0.36040000000000005 0.67999 0.742 0.714705 0.26394 0.02385 0.53477 0.044255 0.8109000000000001 0.044255 0.27613000000000004 0 0.54696 -0.020405 0.8109000000000001 -0.044255 0.3816 -0.03445 0.6977450000000001 -0.33443 0.742 -0.714705 0.0212 -0.18073000000000003 0.03710000000000001 -0.36517 0.03710000000000001 -0.5522600000000001 0 -0.18709 -0.0159 -0.37152999999999997 -0.03710000000000001 -0.5522600000000001 -0.044255 -0.38027500000000003 -0.36040000000000005 -0.67999 -0.742 -0.714705 -0.26394 -0.02385 -0.53477 -0.044255 -0.8109000000000001 -0.044255 -0.27613000000000004 0 -0.54696 0.020405 -0.8109000000000001 0.044255 -0.3816 0.034715 -0.6977450000000001 0.33443 -0.742 0.714705A4.74615 4.74615 0 0 0 0.265 1.855c0 0.18709 0.0159 0.37152999999999997 0.03710000000000001 0.5522600000000001Z"
+                          stroke="currentColor"
+                          strokeWidth={0.29}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+
+                        <path
+                          d="M1.79776 2.4539C2.12212 2.2800599999999998 2.5426750000000005 2.02248 2.5426750000000005 1.855c0 -0.16748000000000002 -0.420555 -0.42506000000000005 -0.744915 -0.5989 -0.17039500000000002 -0.09115999999999999 -0.369145 0.034980000000000004 -0.369145 0.228165l0 0.7414700000000001c0 0.193185 0.19875 0.319325 0.369145 0.22790000000000002Z"
+                          stroke="currentColor"
+                          strokeWidth={0.29}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </g>
+                    </svg>
+                  )}
+
+                  {/* REDDIT */}
                   {p === 'reddit' && (
-                    <span className="text-[10px] font-bold">r/</span>
+                    <span className="text-[10px] font-bold">
+                      r/
+                    </span>
                   )}
 
                   {p.charAt(0).toUpperCase() + p.slice(1)}
@@ -207,9 +246,9 @@ export default function Sidebar() {
           </div>
         </div>
 
-        {/* =========================
+        {/*  
             CATEGORY
-        ========================= */}
+          */}
 
         <div className="flex flex-col gap-2">
           <label className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-800">
@@ -249,9 +288,9 @@ export default function Sidebar() {
           </select>
         </div>
 
-        {/* =========================
+        {/*  
             LANGUAGE
-        ========================= */}
+          */}
 
         <div className="flex flex-col gap-2">
           <label className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-800">
@@ -289,9 +328,9 @@ export default function Sidebar() {
           </select>
         </div>
 
-        {/* =========================
+        {/*  
             SENTIMENT
-        ========================= */}
+          */}
 
         <div className="flex flex-col gap-2">
           <label className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-800">
@@ -319,15 +358,14 @@ export default function Sidebar() {
                     font-semibold
                     transition-all
                     cursor-pointer
-                    ${
-                      isActive
-                        ? `
+                    ${isActive
+                      ? `
                           bg-[#020817]
                           text-white
                           border-[#020817]
                           shadow-[0_4px_14px_rgba(2,8,23,0.14)]
                         `
-                        : `
+                      : `
                           bg-white/60
                           text-slate-700
                           border-black/8
@@ -343,14 +381,13 @@ export default function Sidebar() {
                       w-2.5
                       h-2.5
                       rounded-full
-                      ${
-                        s === 'positive'
-                          ? 'bg-lime-500'
-                          : s === 'neutral'
+                      ${s === 'positive'
+                        ? 'bg-lime-500'
+                        : s === 'neutral'
                           ? 'bg-amber-400'
                           : s === 'negative'
-                          ? 'bg-red-500'
-                          : 'bg-slate-400'
+                            ? 'bg-red-500'
+                            : 'bg-slate-400'
                       }
                     `}
                   />
@@ -360,9 +397,9 @@ export default function Sidebar() {
           </div>
         </div>
 
-        {/* =========================
+        {/*  
             SPAM FILTER
-        ========================= */}
+          */}
 
         <div
           className="
@@ -411,10 +448,9 @@ export default function Sidebar() {
               rounded-full
               transition-all
               cursor-pointer
-              ${
-                store.isGibberish
-                  ? 'bg-[#020817]'
-                  : 'bg-slate-300'
+              ${store.isGibberish
+                ? 'bg-[#020817]'
+                : 'bg-slate-300'
               }
             `}
           >
@@ -428,10 +464,9 @@ export default function Sidebar() {
                 bg-white
                 shadow-sm
                 transition-all
-                ${
-                  store.isGibberish
-                    ? 'translate-x-5'
-                    : 'translate-x-[2px]'
+                ${store.isGibberish
+                  ? 'translate-x-5'
+                  : 'translate-x-[2px]'
                 }
               `}
             />

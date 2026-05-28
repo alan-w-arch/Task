@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  /* =========================
+  /*  
      CORE SURFACES
-  ========================= */
+   
 
   --background: oklch(0.97 0.03 210);
   --foreground: oklch(0.18 0.03 255);
@@ -15,17 +15,17 @@
   --border: oklch(1 0 0 / 40%);
   --border-strong: oklch(0.82 0.02 230);
 
-  /* =========================
+  /*  
      TYPOGRAPHY
-  ========================= */
+   
 
   --text-main: oklch(0.18 0.03 255);
   --text-muted: oklch(0.52 0.03 245);
   --text-soft: oklch(0.65 0.02 240);
 
-  /* =========================
+  /*  
      BRAND COLORS
-  ========================= */
+    */
 
   --primary: oklch(0.57 0.22 258);
   --primary-hover: oklch(0.51 0.23 258);
@@ -34,17 +34,17 @@
   --accent: oklch(0.62 0.24 295);
   --accent-soft: oklch(0.94 0.04 295);
 
-  /* =========================
+  /*  
      SUPPORTING COLORS
-  ========================= */
+    */
 
   --cyan: oklch(0.72 0.14 220);
   --mint: oklch(0.75 0.14 165);
   --yellow-soft: oklch(0.92 0.11 105);
 
-  /* =========================
+  /*  
      STATUS COLORS
-  ========================= */
+    */
 
   --success: oklch(0.66 0.16 160);
   --success-soft: oklch(0.93 0.05 160);
@@ -58,18 +58,18 @@
   --idle: oklch(0.72 0.03 240);
   --idle-soft: oklch(0.95 0.02 240);
 
-  /* =========================
+  /*  
      GRADIENT SYSTEM
-  ========================= */
+    */
 
   --gradient-start: oklch(0.88 0.08 220);
   --gradient-mid-1: oklch(0.91 0.06 165);
   --gradient-mid-2: oklch(0.96 0.07 145);
   --gradient-end: oklch(0.96 0.06 95);
 
-  /* =========================
+  /*  
      SHADOWS
-  ========================= */
+    */
 
   --shadow-card:
     0 8px 32px oklch(0.2 0.03 255 / 0.08);
@@ -77,9 +77,9 @@
   --shadow-glow:
     0 0 0 4px oklch(0.57 0.22 258 / 0.15);
 
-  /* =========================
+  /*  
      RADIUS
-  ========================= */
+    */
 
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
@@ -89,9 +89,9 @@
 }
 
 @theme inline {
-  /* =========================
+  /*  
      COLOR TOKENS
-  ========================= */
+    */
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -130,9 +130,9 @@
   --color-idle: var(--idle);
   --color-idle-soft: var(--idle-soft);
 
-  /* =========================
+  /*  
      FONTS
-  ========================= */
+    */
 
   --font-sans:
     "Inter",
@@ -149,16 +149,16 @@
     ui-monospace,
     monospace;
 
-  /* =========================
+  /*  
      SHADOWS
-  ========================= */
+    */
 
   --shadow-card: var(--shadow-card);
   --shadow-glow: var(--shadow-glow);
 
-  /* =========================
+  /*  
      RADII
-  ========================= */
+    */
 
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
@@ -167,9 +167,9 @@
   --radius-2xl: var(--radius-2xl);
 }
 
-/* =========================
+/*  
    GLOBALS
-========================= */
+  */
 
 html {
   color-scheme: light;
@@ -195,9 +195,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* =========================
+/*  
    GLASS UTILITIES
-========================= */
+  */
 
 @utility glass {
   background: var(--surface-glass);
@@ -213,9 +213,9 @@ body {
   background: var(--surface-hover);
 }
 
-/* =========================
+/*  
    OPTIONAL SELECTION STYLING
-========================= */
+  */
 
 ::selection {
   background: oklch(0.82 0.12 250);
@@ -223,9 +223,9 @@ body {
 }
 
 
-/* =========================
+/*  
    MODERN MINIMAL SCROLLBAR
-========================= */
+  */
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;

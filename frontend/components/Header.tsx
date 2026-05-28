@@ -27,9 +27,9 @@ export default function Header() {
   const [searchInput, setSearchInput] =
     useState(store.search);
 
-  /* =========================
+  /*  
      SEARCH
-  ========================= */
+    */
 
   const triggerSearch = () => {
     store.setSearch(searchInput);
@@ -43,9 +43,9 @@ export default function Header() {
     }
   };
 
-  /* =========================
+  /*  
      SCRAPER
-  ========================= */
+    */
 
   const scrapeMutation = useMutation({
     mutationFn: async () => {
@@ -86,9 +86,9 @@ export default function Header() {
     }
   });
 
-  /* =========================
+  /*  
      EXPORT QUERY
-  ========================= */
+    */
 
   const getQueryString = () => {
     const params = new URLSearchParams();
@@ -150,9 +150,9 @@ export default function Header() {
         select-none
       "
     >
-      {/* =========================
+      {/*  
           SEARCH
-      ========================= */}
+        */}
 
       <div className="flex-1 max-w-sm relative flex items-center">
         <input
@@ -212,9 +212,9 @@ export default function Header() {
         </button>
       </div>
 
-      {/* =========================
+      {/*  
           NAVIGATION
-      ========================= */}
+        */}
 
       <div
         className="
@@ -334,9 +334,9 @@ export default function Header() {
         </button>
       </div>
 
-      {/* =========================
+      {/*  
           ACTIONS
-      ========================= */}
+        */}
 
       <div className="flex items-center gap-2">
         {/* SCRAPER */}

@@ -28,9 +28,9 @@ export default function ClustersView() {
   const [expandedClusterId, setExpandedClusterId] =
     useState<string | null>(null);
 
-  /* =========================
+  /*  
      QUERY URL
-  ========================= */
+    */
 
   const getQueryUrl = () => {
     const params = new URLSearchParams();
@@ -62,9 +62,9 @@ export default function ClustersView() {
     return `http://localhost:3001/api/posts?${params.toString()}`;
   };
 
-  /* =========================
+  /*  
      FETCH
-  ========================= */
+    */
 
   const { data, isLoading, error } =
     useQuery<PostsApiResponse>({
@@ -90,9 +90,9 @@ export default function ClustersView() {
       }
     });
 
-  /* =========================
+  /*  
      LOADING
-  ========================= */
+    */
 
   if (isLoading) {
     return (
@@ -102,9 +102,9 @@ export default function ClustersView() {
     );
   }
 
-  /* =========================
+  /*  
      ERROR
-  ========================= */
+    */
 
   if (error) {
     return (
@@ -132,9 +132,9 @@ export default function ClustersView() {
 
   const posts = data?.data || [];
 
-  /* =========================
+  /*  
      GROUP CLUSTERS
-  ========================= */
+    */
 
   const clustersMap: Record<
     string,
@@ -167,9 +167,9 @@ export default function ClustersView() {
     clustersMap
   ).sort((a, b) => b.posts.length - a.posts.length);
 
-  /* =========================
+  /*  
      TOGGLE
-  ========================= */
+    */
 
   const toggleExpand = (id: string) => {
     if (expandedClusterId === id) {
@@ -192,9 +192,9 @@ export default function ClustersView() {
         custom-scrollbar
       "
     >
-      {/* =========================
+      {/*  
           INTRO
-      ========================= */}
+        */}
 
       <div
         className="
@@ -251,9 +251,9 @@ export default function ClustersView() {
         </div>
       </div>
 
-      {/* =========================
+      {/*  
           EMPTY
-      ========================= */}
+        */}
 
       {clustersList.length === 0 ? (
         <div
@@ -311,9 +311,9 @@ export default function ClustersView() {
                   overflow-hidden
                 "
               >
-                {/* =========================
+                {/*  
                     HEADER
-                ========================= */}
+                  */}
 
                 <div
                   onClick={() =>
@@ -421,9 +421,9 @@ export default function ClustersView() {
                   </div>
                 </div>
 
-                {/* =========================
+                {/*  
                     POSTS
-                ========================= */}
+                  */}
 
                 {isExpanded && (
                   <div

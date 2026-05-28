@@ -9,7 +9,6 @@ import {
 } from '../store/useDashboardStore';
 
 import {
-  Twitter,
   Youtube,
   MessageSquare,
   ChevronLeft,
@@ -34,9 +33,9 @@ type PostsApiResponse = {
 export default function FeedView() {
   const store = useDashboardStore();
 
-  /* =========================
+  /*  
      QUERY URL
-  ========================= */
+    */
 
   const getQueryUrl = () => {
     const params = new URLSearchParams();
@@ -74,9 +73,9 @@ export default function FeedView() {
     return `http://localhost:3001/api/posts?${params.toString()}`;
   };
 
-  /* =========================
+  /*  
      FETCH
-  ========================= */
+    */
 
   const { data, isLoading, error } =
     useQuery<PostsApiResponse>({
@@ -104,9 +103,9 @@ export default function FeedView() {
       }
     });
 
-  /* =========================
+  /*  
      ERROR
-  ========================= */
+    */
 
   if (error) {
     return (
@@ -135,9 +134,9 @@ export default function FeedView() {
 
   return (
     <div className="flex-1 flex flex-col h-full">
-      {/* =========================
+      {/*  
           TOP ACTION BAR
-      ========================= */}
+        */}
 
       <div
         className="
@@ -247,9 +246,9 @@ export default function FeedView() {
         </div>
       </div>
 
-      {/* =========================
+      {/*  
           FEED LIST
-      ========================= */}
+        */}
 
       <div
         className="
@@ -263,9 +262,9 @@ export default function FeedView() {
           custom-scrollbar
         "
       >
-        {/* =========================
+        {/*  
             LOADING
-        ========================= */}
+          */}
 
         {isLoading ? (
           Array.from({ length: 6 }).map((_, i) => (
@@ -282,9 +281,9 @@ export default function FeedView() {
             />
           ))
         ) : posts.length === 0 ? (
-          /* =========================
+          /*  
               EMPTY
-          ========================= */
+            */
 
           <div
             className="
@@ -308,9 +307,9 @@ export default function FeedView() {
             </p>
           </div>
         ) : (
-          /* =========================
+          /*  
               POSTS
-          ========================= */
+            */
 
           posts.map((post) => {
             const dateStr = new Date(
@@ -341,9 +340,9 @@ export default function FeedView() {
                   hover:shadow-[0_4px_20px_rgba(15,23,42,0.06)]
                 "
               >
-                {/* =========================
+                {/*  
                     TOP
-                ========================= */}
+                  */}
 
                 <div className="flex items-start justify-between gap-4">
                   {/* LEFT */}
@@ -376,11 +375,11 @@ export default function FeedView() {
                       )}
 
                       {post.platform === 'youtube' && (
-                        <Youtube className="w-4 h-4" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-0.145 -0.145 4 4" id="Youtube--Streamline-Flex" height={18} width={18} ><desc>{"\n    Youtube Streamline Icon: https://streamlinehq.com\n  "}</desc><g id="youtube--youtube-clip-social-video"><path id="Intersect" stroke="#000000" strokeLinecap="round" strokeLinejoin="round" d="M0.3021 2.40726c0.044255 0.38027500000000003 0.36040000000000005 0.67999 0.742 0.714705 0.26394 0.02385 0.53477 0.044255 0.8109000000000001 0.044255 0.27613000000000004 0 0.54696 -0.020405 0.8109000000000001 -0.044255 0.3816 -0.03445 0.6977450000000001 -0.33443 0.742 -0.714705 0.0212 -0.18073000000000003 0.03710000000000001 -0.36517 0.03710000000000001 -0.5522600000000001 0 -0.18709 -0.0159 -0.37152999999999997 -0.03710000000000001 -0.5522600000000001 -0.044255 -0.38027500000000003 -0.36040000000000005 -0.67999 -0.742 -0.714705 -0.26394 -0.02385 -0.53477 -0.044255 -0.8109000000000001 -0.044255 -0.27613000000000004 0 -0.54696 0.020405 -0.8109000000000001 0.044255 -0.3816 0.034715 -0.6977450000000001 0.33443 -0.742 0.714705A4.74615 4.74615 0 0 0 0.265 1.855c0 0.18709 0.0159 0.37152999999999997 0.03710000000000001 0.5522600000000001Z" strokeWidth={0.29} /><path id="Intersect_2" stroke="#000000" strokeLinecap="round" strokeLinejoin="round" d="M1.79776 2.4539C2.12212 2.2800599999999998 2.5426750000000005 2.02248 2.5426750000000005 1.855c0 -0.16748000000000002 -0.420555 -0.42506000000000005 -0.744915 -0.5989 -0.17039500000000002 -0.09115999999999999 -0.369145 0.034980000000000004 -0.369145 0.228165l0 0.7414700000000001c0 0.193185 0.19875 0.319325 0.369145 0.22790000000000002Z" strokeWidth={0.29} /></g></svg>
                       )}
 
                       {post.platform === 'twitter' && (
-                        <Twitter className="w-4 h-4" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" className="bi bi-twitter-x" viewBox="0 0 16 16" id="Twitter-X--Streamline-Bootstrap" height={16} width={16} ><desc>{"\n    Twitter X Streamline Icon: https://streamlinehq.com\n  "}</desc><path d="M12.6 0.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867 -5.07 -4.425 5.07H0.316l5.733 -6.57L0 0.75h5.063l3.495 4.633L12.601 0.75Zm-0.86 13.028h1.36L4.323 2.145H2.865z" strokeWidth={1} /></svg>
                       )}
                     </div>
 
@@ -512,9 +511,9 @@ export default function FeedView() {
                   </div>
                 </div>
 
-                {/* =========================
+                {/*  
                     SUMMARY
-                ========================= */}
+                  */}
 
                 {post.summary && (
                   <div
@@ -553,9 +552,9 @@ export default function FeedView() {
                   </div>
                 )}
 
-                {/* =========================
+                {/*  
                     CONTENT
-                ========================= */}
+                  */}
 
                 <div
                   className="
@@ -576,9 +575,9 @@ export default function FeedView() {
                   )}
                 </div>
 
-                {/* =========================
+                {/*  
                     FOOTER
-                ========================= */}
+                  */}
 
                 {post?.cluster_name && (
                   <div
@@ -606,9 +605,9 @@ export default function FeedView() {
         )}
       </div>
 
-      {/* =========================
+      {/*  
           FOOTER
-      ========================= */}
+        */}
 
       <footer
         className="

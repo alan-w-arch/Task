@@ -90,9 +90,9 @@ export default function AnalyticsView() {
       }
     });
 
-  /* =========================
+  /*  
      LOADING
-  ========================= */
+    */
 
   if (isLoading) {
     return (
@@ -102,9 +102,9 @@ export default function AnalyticsView() {
     );
   }
 
-  /* =========================
+  /*  
      ERROR
-  ========================= */
+    */
 
   if (error) {
     return (
@@ -130,9 +130,9 @@ export default function AnalyticsView() {
     );
   }
 
-  /* =========================
+  /*  
      KPI DATA
-  ========================= */
+    */
 
   const kpis = data?.kpis || {
     totalPosts: 0,
@@ -141,9 +141,9 @@ export default function AnalyticsView() {
     avgEngagement: 0
   };
 
-  /* =========================
+  /*  
      SENTIMENT DATA
-  ========================= */
+    */
 
   const sentimentData = [
     {
@@ -163,9 +163,9 @@ export default function AnalyticsView() {
     }
   ].filter((item) => item.value > 0);
 
-  /* =========================
+  /*  
      PLATFORM DATA
-  ========================= */
+    */
 
   const platformData = [
     {
@@ -209,9 +209,9 @@ export default function AnalyticsView() {
         custom-scrollbar
       "
     >
-      {/* =========================
+      {/*  
           KPI GRID
-      ========================= */}
+        */}
 
       <div className="grid grid-cols-4 gap-4">
         {/* CLEAN */}
@@ -487,9 +487,9 @@ export default function AnalyticsView() {
         </div>
       </div>
 
-      {/* =========================
+      {/*  
           CHARTS
-      ========================= */}
+        */}
 
       <div className="grid grid-cols-3 gap-5">
         {/* SENTIMENT */}
@@ -726,9 +726,9 @@ export default function AnalyticsView() {
         </div>
       </div>
 
-      {/* =========================
+      {/*  
           LOWER GRID
-      ========================= */}
+        */}
 
       <div className="grid grid-cols-3 gap-5">
         {/* TRENDS */}

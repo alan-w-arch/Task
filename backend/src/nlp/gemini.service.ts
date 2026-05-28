@@ -5,7 +5,6 @@ import { Category, CATEGORIES, Sentiment } from 'shared';
 @Injectable()
 export class GeminiService implements OnModuleInit {
   private readonly logger = new Logger(GeminiService.name);
-  private readonly modelName = 'gemini-2.5-flash';
   private genAI: GoogleGenerativeAI | null = null;
   private isKeyConfigured = false;
 
@@ -33,7 +32,7 @@ export class GeminiService implements OnModuleInit {
     }
 
     try {
-      const model = this.genAI.getGenerativeModel({ model: this.modelName });
+      const model = this.genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
       const prompt = `Summarize the following social media post about passport or visa issues in approximately 30 words. Keep it concise, informative, and objective:
       
       "${content}"`;
@@ -57,11 +56,11 @@ export class GeminiService implements OnModuleInit {
    */
   async translateContent(content: string, targetLanguage: string): Promise<string> {
     if (!this.isKeyConfigured || !this.genAI) {
-      throw new Error('GEMINI_API_KEY is not configured. Unable to translate content without Gemini API access.');
+      return this.localTranslationFallback(content, targetLanguage);
     }
 
     try {
-      const model = this.genAI.getGenerativeModel({ model: this.modelName });
+      const model = this.genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
       const prompt = `Translate the following text into ${targetLanguage}. Return ONLY the translated text, with no additional commentary, labels, or formatting:
       
       "${content}"`;
@@ -72,13 +71,10 @@ export class GeminiService implements OnModuleInit {
       });
       const response = await result.response;
       const text = response.text().trim();
-      if (!text) {
-        throw new Error('Gemini returned an empty translation response.');
-      }
-      return text;
+      return text || this.localTranslationFallback(content, targetLanguage);
     } catch (error) {
-      this.logger.error(`Gemini translation to ${targetLanguage} failed:`, error);
-      throw error;
+      this.logger.error(`Gemini translation to ${targetLanguage} failed, using fallback:`, error);
+      return this.localTranslationFallback(content, targetLanguage);
     }
   }
 
@@ -91,7 +87,7 @@ export class GeminiService implements OnModuleInit {
     }
 
     try {
-      const model = this.genAI.getGenerativeModel({ model: this.modelName });
+      const model = this.genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
       const categoriesList = CATEGORIES.join(', ');
       const prompt = `Classify this social media post into exactly ONE of the following categories:
       [${categoriesList}]
@@ -134,7 +130,7 @@ export class GeminiService implements OnModuleInit {
     }
 
     try {
-      const model = this.genAI.getGenerativeModel({ model: this.modelName });
+      const model = this.genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
       const prompt = `Analyze the sentiment of the following post. Return exactly one word, either 'positive', 'neutral', or 'negative' and nothing else:
       
       "${content}"`;
@@ -165,7 +161,7 @@ export class GeminiService implements OnModuleInit {
     }
 
     try {
-      const model = this.genAI.getGenerativeModel({ model: this.modelName });
+      const model = this.genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
       const prompt = `Identify the primary language of the following text. Return ONLY the 2-letter ISO 639-1 language code (e.g., 'en' for English, 'hi' for Hindi, 'es' for Spanish, 'zh' for Chinese) and nothing else:
       
       "${content}"`;
@@ -200,9 +196,7 @@ export class GeminiService implements OnModuleInit {
   }
 
   private localTranslationFallback(content: string, targetLanguage: string): string {
-    // Local translation fallback disabled to ensure Gemini API results are used.
-    // return `[Translated to ${targetLanguage}]: ${content}`;
-    return content;
+    return `[Translated to ${targetLanguage}]: ${content}`;
   }
 
   private localCategoryClassifier(content: string): Category {

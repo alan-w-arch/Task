@@ -49,9 +49,9 @@ export default function PostDetailsModal() {
 
   const postId = store.selectedPostId;
 
-  /* =========================
+  /*  
      FETCH
-  ========================= */
+    */
 
   const { data, isLoading, error } =
     useQuery<PostDetailResponse | null>({
@@ -76,9 +76,9 @@ export default function PostDetailsModal() {
       enabled: !!postId
     });
 
-  /* =========================
+  /*  
      TRANSLATION
-  ========================= */
+    */
 
   const translateMutation = useMutation({
     mutationFn: async (
@@ -123,18 +123,16 @@ export default function PostDetailsModal() {
       });
     },
 
-    onError: (error) => {
-      console.error('Translation mutation failed:', error);
-      const message = error instanceof Error ? error.message : JSON.stringify(error);
+    onError: () => {
       alert(
-        `Translation failed. ${message || 'Verify backend services.'}`
+        'Translation failed. Verify backend services.'
       );
     }
   });
 
-  /* =========================
+  /*  
      CLOSE
-  ========================= */
+    */
 
   if (!postId) return null;
 
@@ -146,22 +144,9 @@ export default function PostDetailsModal() {
     setSelectedLang('en');
   };
 
-  /* =========================
-     TRANSLATE CLICK
-  ========================= */
+  /* TRANSLATE CLICK */
 
-  const handleTranslateClick = (
-    langCode: LanguageCode
-  ) => {
-    setSelectedLang(langCode);
-
-    setTranslatedText(null);
-
-    translateMutation.mutate(
-      langCode
-    );
-  };
-
+  const handleTranslateClick = (langCode: LanguageCode) => { setSelectedLang(langCode); setTranslatedText(null); const cached = data?.translations?.find((t) => t.language === langCode); if (cached) { setTranslatedText(cached.translated_text); } else { translateMutation.mutate(langCode); } };
   const postDetail = data?.post || {};
 
   const siblings: Post[] =
@@ -184,9 +169,9 @@ export default function PostDetailsModal() {
         backdrop-blur-md
       "
     >
-      {/* =========================
+      {/*  
           MODAL
-      ========================= */}
+        */}
 
       <div
         className="
@@ -209,9 +194,9 @@ export default function PostDetailsModal() {
           duration-200
         "
       >
-        {/* =========================
+        {/*  
             CLOSE
-        ========================= */}
+          */}
 
         <button
           onClick={handleClose}
@@ -239,18 +224,18 @@ export default function PostDetailsModal() {
           <X className="w-4 h-4" />
         </button>
 
-        {/* =========================
+        {/*  
             LOADING
-        ========================= */}
+          */}
 
         {isLoading ? (
           <div className="flex-1 flex items-center justify-center p-20">
             <Loader2 className="w-8 h-8 text-slate-700 animate-spin" />
           </div>
         ) : error ? (
-          /* =========================
+          /*  
               ERROR
-          ========================= */
+            */
 
           <div
             className="
@@ -286,9 +271,9 @@ export default function PostDetailsModal() {
           </div>
         ) : (
           <>
-            {/* =========================
+            {/*  
                 HEADER
-            ========================= */}
+              */}
 
             <div
               className="
@@ -366,9 +351,9 @@ export default function PostDetailsModal() {
               </div>
             </div>
 
-            {/* =========================
+            {/*  
                 BODY
-            ========================= */}
+              */}
 
             <div
               className="
@@ -380,9 +365,9 @@ export default function PostDetailsModal() {
               "
             >
               <div className="grid grid-cols-5 gap-6">
-                {/* =========================
+                {/*  
                     LEFT
-                ========================= */}
+                  */}
 
                 <div className="col-span-3 flex flex-col gap-5">
                   {/* SUMMARY */}
@@ -656,9 +641,9 @@ export default function PostDetailsModal() {
                   </div>
                 </div>
 
-                {/* =========================
+                {/*  
                     RIGHT
-                ========================= */}
+                  */}
 
                 <div className="col-span-2 flex flex-col gap-5">
                   {/* INSIGHTS */}
@@ -935,9 +920,9 @@ export default function PostDetailsModal() {
               </div>
             </div>
 
-            {/* =========================
+            {/*  
                 FOOTER
-            ========================= */}
+              */}
 
             <div
               className="
