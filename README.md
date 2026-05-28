@@ -6,7 +6,7 @@ The project follows a **Monorepo architecture** and combines a modern full-stack
 
 ---
 
-# 🌐 Live Demo
+# Live Demo
 
 Frontend Deployment:
 https://task-eight-opal.vercel.app/
@@ -19,7 +19,7 @@ https://github.com/alan-w-arch/Task
 
 ---
 
-# ✨ Features
+# Features
 
 * Multi-platform social media scraping
 * AI-powered NLP processing pipeline
@@ -36,7 +36,7 @@ https://github.com/alan-w-arch/Task
 
 ---
 
-# 📸 Dashboard Preview
+# Dashboard Preview
 
 > Add screenshots here before submission.
 
@@ -46,7 +46,7 @@ https://github.com/alan-w-arch/Task
 
 ---
 
-# 🛠️ Tech Stack
+# Tech Stack
 
 ## Frontend
 
@@ -79,7 +79,7 @@ https://github.com/alan-w-arch/Task
 
 ---
 
-# 📂 Project Structure
+# Project Structure
 
 ```bash
 Task/
@@ -98,7 +98,7 @@ Task/
 
 ---
 
-# 🧠 Architecture Overview
+# Architecture Overview
 
 ## High-Level Architecture
 
@@ -130,7 +130,7 @@ Translation Sentiment Clustering
 
 ---
 
-# ⚙️ NLP Pipeline Architecture
+# NLP Pipeline Architecture
 
 When a post is scraped, it enters an asynchronous processing workflow:
 
@@ -160,7 +160,7 @@ Stores Final Processed Post
 
 ---
 
-# 💾 Database Schema
+# Database Schema
 
 ## 1. `clusters`
 
@@ -211,7 +211,7 @@ Caches translated post content.
 
 ---
 
-# 📈 Analytics Supported
+# Analytics Supported
 
 The dashboard provides:
 
@@ -224,7 +224,7 @@ The dashboard provides:
 
 ---
 
-# 🧩 Design Decisions
+# Design Decisions
 
 * Used **BullMQ** for scalable asynchronous processing.
 * Chose **raw SQL** instead of ORM for optimized PostgreSQL performance.
@@ -234,7 +234,7 @@ The dashboard provides:
 
 ---
 
-# 🔐 Environment Variables
+# Environment Variables
 
 ## Root `.env`
 
@@ -248,7 +248,7 @@ NEXT_PUBLIC_API_URL=
 
 ---
 
-# 🚀 Getting Started
+# Getting Started
 
 ## Prerequisites
 
@@ -397,17 +397,7 @@ GET /api/analytics
 
 ---
 
-# 📮 Postman Collection
-
-> Attach exported Postman collection in repository root:
-
-```text
-postman_collection.json
-```
-
----
-
-# ☁️ Deployment
+# Deployment
 
 ## Frontend Deployment (Vercel)
 
