@@ -437,15 +437,9 @@ GEMINI_API_KEY=
 
 ---
 
-# 📄 License
+# Author
 
-MIT License
-
----
-
-# 👨‍💻 Author
-
-Alan
+Himanshu Saxena (alan-w-arch)
 
 GitHub:
 https://github.com/alan-w-arch
