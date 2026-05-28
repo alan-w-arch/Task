@@ -1,231 +1,460 @@
-# Social Media Scraper Dashboard (Zebvo Full-Stack Assignment)
+# Social Media Scraper Dashboard (ZEBVO Full-Stack Assignment)
 
-A production-ready, highly scalable, and recruiter-quality **Social Media Scraper Dashboard** designed to fetch, process, and visualize social media posts regarding passport and visa issues from the past 24 hours.
+A production-ready, scalable, and recruiter-quality **Social Media Scraper Dashboard** built to fetch, process, analyze, and visualize social media discussions related to passport and visa issues from the past 24 hours.
 
-The project is structured as a **Monorepo** and leverages a modern full-stack architecture featuring queue-based NLP pipeline workers, raw SQL database operations (optimized for Supabase PostgreSQL), and a glassmorphic Next.js interface.
+The project follows a **Monorepo architecture** and combines a modern full-stack stack with queue-based NLP workers, optimized PostgreSQL raw SQL operations, and a responsive analytics dashboard built with Next.js.
 
 ---
 
-## 🛠️ Tech Stack
+# 🌐 Live Demo
 
-### Frontend
+Frontend Deployment:
+https://task-eight-opal.vercel.app/
+
+Backend Swagger API Docs:
+https://your-backend-url/swagger
+
+GitHub Repository:
+https://github.com/alan-w-arch/Task
+
+---
+
+# ✨ Features
+
+* Multi-platform social media scraping
+* AI-powered NLP processing pipeline
+* Sentiment analysis
+* Automatic language detection
+* Translation support
+* Duplicate thread clustering
+* AI-generated summaries
+* Full-text search and filtering
+* Real-time analytics dashboard
+* CSV & PDF export support
+* Queue-based scalable backend architecture
+* Offline fallback heuristics when Gemini API is unavailable
+
+---
+
+# 📸 Dashboard Preview
+
+> Add screenshots here before submission.
+
+```md
+![Dashboard](./assets/dashboard.png)
+```
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+
 * **Framework:** Next.js 16 (App Router & React 19)
-* **Styling:** Tailwind CSS v4 & custom glassmorphic panels
-* **State Management:** Zustand (centralized UI, search, and filters state)
+* **Styling:** Tailwind CSS v4 & Glassmorphism UI
+* **State Management:** Zustand
 * **Server State Caching:** TanStack Query (React Query)
-* **Visualization:** Recharts (responsive analytics visualizations)
+* **Charts & Analytics:** Recharts
 * **Icons:** Lucide React
 
-### Backend
+## Backend
+
 * **Framework:** NestJS 10 & TypeScript
-* **Database Driver:** Raw SQL via Node-Postgres (`pg` client)
-* **Database Storage:** PostgreSQL / Supabase
-* **Queues & Workers:** BullMQ & Redis (distributed scraping and NLP queues)
-* **Scheduling:** NestJS Schedule (hourly scrape scheduler)
+* **Database:** PostgreSQL / Supabase
+* **Database Driver:** Raw SQL via `pg`
+* **Queues & Workers:** BullMQ + Redis
+* **Scheduling:** NestJS Schedule
 * **API Documentation:** Swagger
 
-### AI / NLP Pipeline
-* **Model Integration:** Google Gemini API (`@google/generative-ai` SDK)
-* **Supported Features:** Auto-Language Detection, Translation to English, Categorization into 10 key buckets, Sentiment Analysis, Text Similarity Clustering (duplicate thread grouping), and AI-generated ~30-word summaries.
-* **Offline Resiliency:** Fully functional out-of-the-box using local tokenized Jaccard similarity and lexicon heuristics if the Gemini API Key is missing.
+## AI / NLP Pipeline
+
+* Google Gemini API
+* Language Detection
+* Translation
+* Sentiment Analysis
+* Categorization
+* Semantic Clustering
+* AI Summarization
+* Spam / Gibberish Detection
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```bash
 Task/
-├── shared/            # Shared TypeScript types, platform lists, categories, and languages
-├── backend/           # NestJS server with API routers, scrapers, DB handlers, and NLP queue workers
+├── shared/            # Shared TypeScript types and utilities
+├── backend/           # NestJS backend service
 │   └── src/
-│       ├── db/        # Raw SQL pool client initialization and auto-migration schema
-│       ├── nlp/       # Gemini API wrappers and BullMQ queue processor
-│       ├── scrapers/  # Reddit, YouTube, and Twitter adapters + scheduler
-│       ├── posts/     # REST controller for searching and translating posts
-│       ├── analytics/ # Raw SQL aggregates for charts data
-│       └── export/    # Zero-dependency CSV and streaming PDF generators
-├── frontend/          # Next.js frontend with state hooks, charts, views, and modal drawers
-    └── app/           # App router containing page, layouts, styles, and store hooks
-
+│       ├── db/        # PostgreSQL raw SQL setup & schema
+│       ├── nlp/       # NLP processors and Gemini integration
+│       ├── scrapers/  # Reddit, Twitter, YouTube scrapers
+│       ├── posts/     # Posts API controllers/services
+│       ├── analytics/ # Aggregation and metrics services
+│       └── export/    # CSV and PDF export generators
+├── frontend/          # Next.js frontend dashboard
+│   └── app/           # App Router pages and layouts
 ```
 
 ---
 
-## 💾 Raw SQL Database Schema
+# 🧠 Architecture Overview
 
-Instead of using an ORM like Prisma, the project directly executes raw SQL queries on startup. The schema configuration resides in [schema.sql](file:///c:/Users/hp/Desktop/Task/backend/src/db/schema.sql) and is loaded by the database service automatically:
+## High-Level Architecture
 
-1. **`clusters`**: Groupings of duplicates or highly similar posts:
-   * `id`: UUID (Primary Key)
-   * `name`: Character Varying (Representative topic keywords generated by NLP)
-   * `created_at`: Timestamp
-2. **`posts`**: Core scraper data:
-   * `id`: UUID (Primary Key)
-   * `platform`: String (`reddit`, `youtube`, `twitter`)
-   * `author` / `handle` / `content` / `source_url`: Text values
-   * `translated_content` / `summary`: Text values (populated by Gemini)
-   * `category`: Character Varying (One of the 10 target categories)
-   * `sentiment`: Character Varying (`positive`, `neutral`, `negative`)
-   * `language`: Character Varying (ISO 639-1 language code)
-   * `engagement_score`: Integer (Upvotes, likes, or comments)
-   * `cluster_id`: UUID (Foreign Key to `clusters` table)
-   * `is_gibberish`: Boolean (Flagged by spam filtering heuristics)
-   * `created_at` / `scraped_at`: Timestamps
-3. **`translations`**: Cached translations of posts into target languages (supports 10 languages):
-   * `id`: UUID (Primary Key)
-   * `post_id`: UUID (Foreign Key to `posts` table)
-   * `language`: String (target language code)
-   * `translated_text`: Text
-4. **`analytics_snapshots`**: (Optional cached snapshots table for timeline tracking)
-
-*Indexing:* Optimized queries are maintained via composite GIN indexes (`posts_search_idx`) on `content` and `translated_content` to power high-speed PostgreSQL full-text search.
-
----
-
-## ⚙️ NLP Pipeline Architecture
-
-When a post is scraped, it undergoes asynchronous processing:
-
-```
-Scraper Ingests Post ────> Saves to DB (is_gibberish=false) 
-                               │
-                               ▼
-                    Adds to BullMQ nlp-queue
-                               │
-                               ▼
-                    Worker: NLP Processing
-                               │
-         ┌─────────────────────┼─────────────────────┐
-         ▼                     ▼                     ▼
-Spam Heuristics Check   Lang Detect & Translate   Sentiment & Category
-(Regex, Link density,   (Translate to English)   (Keyword matrix or Gemini)
- repetitive text check)        │
-         │                     ▼
-         │             Semantic Clustering
-         │             (Jaccard index overlap check)
-         │                     │
-         ▼                     ▼
-     Mark Spam          AI Summarization (~30 words)
-         │                     │
-         └──────────┬──────────┘
-                    ▼
-           Saves finished post 
+```text
+Social Platforms
+(Reddit / Twitter / YouTube)
+            │
+            ▼
+      Scraper Services
+            │
+            ▼
+      PostgreSQL Database
+            │
+            ▼
+      BullMQ Queue System
+            │
+            ▼
+       NLP Worker Pipeline
+ ┌──────────┼──────────┐
+ ▼          ▼          ▼
+Translation Sentiment Clustering
+            │
+            ▼
+     Analytics Aggregation
+            │
+            ▼
+     Next.js Dashboard UI
 ```
 
 ---
 
-## 🚀 Getting Started
+# ⚙️ NLP Pipeline Architecture
 
-### Prerequisites
-* Node.js v18 or later
-* Access to a PostgreSQL/Supabase database and a Redis instance (or run them via Docker).
+When a post is scraped, it enters an asynchronous processing workflow:
 
-### Step 1: Install Dependencies
-From the root directory, install monorepo dependencies and link workspaces:
+```text
+Scraper Ingests Post
+        │
+        ▼
+Saves Raw Post to Database
+        │
+        ▼
+Adds Job to BullMQ Queue
+        │
+        ▼
+NLP Worker Processing
+        │
+ ┌──────┼──────────────┬─────────────┐
+ ▼      ▼              ▼             ▼
+Spam  Translation   Sentiment   Clustering
+Check  & Language    Analysis
+        │
+        ▼
+AI Summarization
+        │
+        ▼
+Stores Final Processed Post
+```
+
+---
+
+# 💾 Database Schema
+
+## 1. `clusters`
+
+Stores grouped duplicate or semantically related posts.
+
+| Column     | Type      |
+| ---------- | --------- |
+| id         | UUID      |
+| name       | VARCHAR   |
+| created_at | TIMESTAMP |
+
+---
+
+## 2. `posts`
+
+Stores all scraped and NLP-processed posts.
+
+| Column             | Type      |
+| ------------------ | --------- |
+| id                 | UUID      |
+| platform           | VARCHAR   |
+| author             | TEXT      |
+| handle             | TEXT      |
+| content            | TEXT      |
+| translated_content | TEXT      |
+| summary            | TEXT      |
+| category           | VARCHAR   |
+| sentiment          | VARCHAR   |
+| language           | VARCHAR   |
+| engagement_score   | INTEGER   |
+| cluster_id         | UUID      |
+| is_gibberish       | BOOLEAN   |
+| created_at         | TIMESTAMP |
+| scraped_at         | TIMESTAMP |
+
+---
+
+## 3. `translations`
+
+Caches translated post content.
+
+| Column          | Type    |
+| --------------- | ------- |
+| id              | UUID    |
+| post_id         | UUID    |
+| language        | VARCHAR |
+| translated_text | TEXT    |
+
+---
+
+# 📈 Analytics Supported
+
+The dashboard provides:
+
+* Sentiment distribution
+* Platform distribution
+* Trending categories
+* Post volume over time
+* Top discussion clusters
+* Engagement analytics
+
+---
+
+# 🧩 Design Decisions
+
+* Used **BullMQ** for scalable asynchronous processing.
+* Chose **raw SQL** instead of ORM for optimized PostgreSQL performance.
+* Implemented **offline NLP fallback heuristics** for resiliency without Gemini API access.
+* Used **Zustand + TanStack Query** for lightweight and scalable frontend state management.
+* Designed the project as a **monorepo** for maintainability and shared typing.
+
+---
+
+# 🔐 Environment Variables
+
+## Root `.env`
+
+```env
+DATABASE_URL=
+REDIS_HOST=
+REDIS_PORT=
+GEMINI_API_KEY=
+NEXT_PUBLIC_API_URL=
+```
+
+---
+
+# 🚀 Getting Started
+
+## Prerequisites
+
+* Node.js v18+
+* PostgreSQL / Supabase
+* Redis
+* Gemini API Key (optional but recommended)
+
+---
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/alan-w-arch/Task.git
+cd Task
+```
+
+---
+
+## 2. Install Dependencies
+
 ```bash
 npm install --legacy-peer-deps
 ```
 
-### Step 2: Configure Environment
-Copy `.env.example` to `.env` in the root folder and configure credentials:
+---
+
+## 3. Configure Environment
+
 ```bash
 cp .env.example .env
 ```
-Update your Database URLs (Supabase connection parameters), Redis connection details, and provide your `GEMINI_API_KEY`.
 
-### Step 3: Spin Up Local Services (Optional)
-If you don't have Supabase and Redis credentials and want to run them locally:
+Update environment variables accordingly.
+
+---
+
+## 4. Start Local Services (Optional)
+
 ```bash
 docker compose up -d
 ```
-*(Note: Tables will be created automatically in your PostgreSQL database on backend server startup).*
 
-### Step 4: Run Development Servers
-Start both the NestJS backend and Next.js frontend concurrently:
+---
+
+## 5. Run Development Servers
+
 ```bash
 npm run dev
 ```
-* **Frontend:** [http://localhost:3000](http://localhost:3000)
-* **Backend:** [http://localhost:3001](http://localhost:3001)
-* **Swagger API Documentation:** [http://localhost:3001/swagger](http://localhost:3001/swagger)
+
+### Frontend
+
+http://localhost:3000
+
+### Backend
+
+http://localhost:3001
+
+### Swagger Docs
+
+http://localhost:3001/swagger
 
 ---
 
-## 📡 REST API Documentation
+# 📡 REST API Documentation
 
-### 1. Posts Feed
-* **`GET /api/posts`**: Query list of processed posts.
-  * *Parameters (Query):* `platform`, `category`, `language`, `sentiment`, `region`, `minEngagement`, `timeRangeHours`, `search`, `page`, `limit`, `sortBy`, `sortOrder`.
-* **`GET /api/posts/:id`**: Returns specific post details, cached translations, and other posts in the same cluster.
-* **`POST /api/posts/scrape`**: Manually forces all scrapers to fetch fresh data immediately and updates queues.
+## Posts APIs
 
-### 2. NLP Translation
-* **`POST /api/translate`**: Translates post content into a chosen target language.
-  * *Body:* `{ "postId": "uuid", "language": "hi" }`
-  * *Output:* Returns translated text (uses cache if exists, otherwise triggers Gemini and caches the result).
+### Get Posts
 
-### 3. Exports
-* **`GET /api/export/csv`**: Generates a CSV stream of filtered posts matching current UI settings.
-* **`GET /api/export/pdf`**: Streams a custom-typeset PDF intelligence report listing KPIs and processed posts.
+```http
+GET /api/posts
+```
 
-### 4. Analytics
-* **`GET /api/analytics`**: Aggregates charts metrics (sentiment ratios, platform shares, trending categories, volume trends, top clusters).
+Supports:
+
+* platform
+* category
+* sentiment
+* language
+* search
+* pagination
+* sorting
 
 ---
 
-## ☁️ Deployment Guides
+### Get Single Post
 
-### Backend Deployment
-This backend is a standalone NestJS service inside the `backend` folder.
+```http
+GET /api/posts/:id
+```
 
-* Navigate to the backend folder:
-  ```bash
-  cd backend
-  ```
-* Install dependencies:
-  ```bash
-  npm install
-  ```
-* Build for production:
-  ```bash
-  npm run build
-  ```
-* Start the production server:
-  ```bash
-  npm run start:prod
-  ```
-* Required environment variables:
-  * `DATABASE_URL`
-  * `REDIS_HOST`
-  * `REDIS_PORT`
-  * `GEMINI_API_KEY`
-  * `PORT` (optional, default depends on your host)
+---
 
-For platform deployments such as Railway or Render, use the backend folder as the service root and set the build command to `npm run build` and the start command to `npm run start:prod`.
+### Trigger Scraping
 
-### Frontend Deployment
-This frontend is a standalone Next.js app inside the `frontend` folder.
+```http
+POST /api/posts/scrape
+```
 
-* Navigate to the frontend folder:
-  ```bash
-  cd frontend
-  ```
-* Install dependencies:
-  ```bash
-  npm install
-  ```
-* Build the production app:
-  ```bash
-  npm run build
-  ```
-* Start the production server:
-  ```bash
-  npm run start
-  ```
-* Required environment variable:
-  * `NEXT_PUBLIC_API_URL` — the full URL of the deployed backend API
+---
 
-For Vercel, set the project root directory to `frontend`, the build command to `npm run build`, and make sure `NEXT_PUBLIC_API_URL` is configured in environment variables.
+## Translation APIs
 
+### Translate Post
 
-## Deployed app Url: [https://task-eight-opal.vercel.app/](https://task-eight-opal.vercel.app/)
+```http
+POST /api/translate
+```
+
+Request:
+
+```json
+{
+  "postId": "uuid",
+  "language": "hi"
+}
+```
+
+---
+
+## Export APIs
+
+### CSV Export
+
+```http
+GET /api/export/csv
+```
+
+### PDF Export
+
+```http
+GET /api/export/pdf
+```
+
+---
+
+## Analytics APIs
+
+### Dashboard Metrics
+
+```http
+GET /api/analytics
+```
+
+---
+
+# 📮 Postman Collection
+
+> Attach exported Postman collection in repository root:
+
+```text
+postman_collection.json
+```
+
+---
+
+# ☁️ Deployment
+
+## Frontend Deployment (Vercel)
+
+```bash
+cd frontend
+npm install
+npm run build
+npm run start
+```
+
+Environment Variables:
+
+```env
+NEXT_PUBLIC_API_URL=
+```
+
+---
+
+## Backend Deployment (Railway / Render)
+
+```bash
+cd backend
+npm install
+npm run build
+npm run start:prod
+```
+
+Required Variables:
+
+```env
+DATABASE_URL=
+REDIS_HOST=
+REDIS_PORT=
+GEMINI_API_KEY=
+```
+
+---
+
+# 📄 License
+
+MIT License
+
+---
+
+# 👨‍💻 Author
+
+Alan
+
+GitHub:
+https://github.com/alan-w-arch
