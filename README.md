@@ -36,16 +36,6 @@ https://github.com/alan-w-arch/Task
 
 ---
 
-# Dashboard Preview
-
-> Add screenshots here before submission.
-
-```md
-![Dashboard](./assets/dashboard.png)
-```
-
----
-
 # Tech Stack
 
 ## Frontend
