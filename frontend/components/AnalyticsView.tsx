@@ -77,7 +77,7 @@ export default function AnalyticsView() {
 
       queryFn: async () => {
         const response = await fetch(
-          'http://localhost:3001/api/analytics'
+          `${process.env.NEXT_PUBLIC_API_URL}/api/analytics`
         );
 
         if (!response.ok) {

@@ -70,7 +70,7 @@ export default function FeedView() {
     params.append('sortBy', store.sortBy);
     params.append('sortOrder', store.sortOrder);
 
-    return `http://localhost:3001/api/posts?${params.toString()}`;
+    return `${process.env.NEXT_PUBLIC_API_URL}/api/posts?${params.toString()}`;
   };
 
   /*  

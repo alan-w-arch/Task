@@ -146,8 +146,8 @@ Start both the NestJS backend and Next.js frontend concurrently:
 npm run dev
 ```
 * **Frontend:** [http://localhost:3000](http://localhost:3000)
-* **Backend:** [http://localhost:3001](http://localhost:3001)
-* **Swagger API Documentation:** [http://localhost:3001/swagger](http://localhost:3001/swagger)
+* **Backend:** [ NEXT_PUBLIC_API_URL]( NEXT_PUBLIC_API_URL)
+* **Swagger API Documentation:** [ NEXT_PUBLIC_API_URL/swagger]( NEXT_PUBLIC_API_URL/swagger)
 
 ---
 

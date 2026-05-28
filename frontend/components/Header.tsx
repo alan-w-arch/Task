@@ -50,7 +50,7 @@ export default function Header() {
   const scrapeMutation = useMutation({
     mutationFn: async () => {
       const response = await fetch(
-        'http://localhost:3001/api/posts/scrape',
+        `${process.env.NEXT_PUBLIC_API_URL}/api/posts/scrape`,
         {
           method: 'POST'
         }
@@ -122,14 +122,14 @@ export default function Header() {
 
   const handleExportCsv = () => {
     window.open(
-      `http://localhost:3001/api/export/csv?${getQueryString()}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/export/csv?${getQueryString()}`,
       '_blank'
     );
   };
 
   const handleExportPdf = () => {
     window.open(
-      `http://localhost:3001/api/export/pdf?${getQueryString()}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/export/pdf?${getQueryString()}`,
       '_blank'
     );
   };

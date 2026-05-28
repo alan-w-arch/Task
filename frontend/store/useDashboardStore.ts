@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Platform, Category, Sentiment } from 'shared';
+import { Platform, Category, Sentiment } from '../shared';
 
 export interface DashboardState {
   search: string;

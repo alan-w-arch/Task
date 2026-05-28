@@ -12,7 +12,6 @@ import {
   HeartHandshake,
   Layers,
   AlertOctagon,
-  Youtube,
   Compass
 } from 'lucide-react';
 

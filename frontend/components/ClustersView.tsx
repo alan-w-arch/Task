@@ -59,7 +59,7 @@ export default function ClustersView() {
 
     params.append('limit', '100');
 
-    return `http://localhost:3001/api/posts?${params.toString()}`;
+    return `${process.env.NEXT_PUBLIC_API_URL}/api/posts?${params.toString()}`;
   };
 
   /*  

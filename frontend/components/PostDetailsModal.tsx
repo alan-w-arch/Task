@@ -61,7 +61,7 @@ export default function PostDetailsModal() {
         if (!postId) return null;
 
         const response = await fetch(
-          `http://localhost:3001/api/posts/${postId}`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/posts/${postId}`
         );
 
         if (!response.ok) {
@@ -85,7 +85,7 @@ export default function PostDetailsModal() {
       language: LanguageCode
     ) => {
       const response = await fetch(
-        'http://localhost:3001/api/translate',
+        `${process.env.NEXT_PUBLIC_API_URL}/api/translate`,
         {
           method: 'POST',
 
