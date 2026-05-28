@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+:root {
+  /* =========================
+     CORE SURFACES
+  ========================= */
+
+  --background: oklch(0.97 0.03 210);
+  --foreground: oklch(0.18 0.03 255);
+
+  --surface: oklch(1 0 0 / 72%);
+  --surface-glass: oklch(1 0 0 / 55%);
+  --surface-hover: oklch(0.98 0.01 210 / 85%);
+
+  --border: oklch(1 0 0 / 40%);
+  --border-strong: oklch(0.82 0.02 230);
+
+  /* =========================
+     TYPOGRAPHY
+  ========================= */
+
+  --text-main: oklch(0.18 0.03 255);
+  --text-muted: oklch(0.52 0.03 245);
+  --text-soft: oklch(0.65 0.02 240);
+
+  /* =========================
+     BRAND COLORS
+  ========================= */
+
+  --primary: oklch(0.57 0.22 258);
+  --primary-hover: oklch(0.51 0.23 258);
+  --primary-soft: oklch(0.93 0.05 250);
+
+  --accent: oklch(0.62 0.24 295);
+  --accent-soft: oklch(0.94 0.04 295);
+
+  /* =========================
+     SUPPORTING COLORS
+  ========================= */
+
+  --cyan: oklch(0.72 0.14 220);
+  --mint: oklch(0.75 0.14 165);
+  --yellow-soft: oklch(0.92 0.11 105);
+
+  /* =========================
+     STATUS COLORS
+  ========================= */
+
+  --success: oklch(0.66 0.16 160);
+  --success-soft: oklch(0.93 0.05 160);
+
+  --warning: oklch(0.76 0.16 75);
+  --warning-soft: oklch(0.95 0.05 80);
+
+  --danger: oklch(0.63 0.22 25);
+  --danger-soft: oklch(0.94 0.05 25);
+
+  --idle: oklch(0.72 0.03 240);
+  --idle-soft: oklch(0.95 0.02 240);
+
+  /* =========================
+     GRADIENT SYSTEM
+  ========================= */
+
+  --gradient-start: oklch(0.88 0.08 220);
+  --gradient-mid-1: oklch(0.91 0.06 165);
+  --gradient-mid-2: oklch(0.96 0.07 145);
+  --gradient-end: oklch(0.96 0.06 95);
+
+  /* =========================
+     SHADOWS
+  ========================= */
+
+  --shadow-card:
+    0 8px 32px oklch(0.2 0.03 255 / 0.08);
+
+  --shadow-glow:
+    0 0 0 4px oklch(0.57 0.22 258 / 0.15);
+
+  /* =========================
+     RADIUS
+  ========================= */
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+}
+
+@theme inline {
+  /* =========================
+     COLOR TOKENS
+  ========================= */
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-surface: var(--surface);
+  --color-surface-glass: var(--surface-glass);
+  --color-surface-hover: var(--surface-hover);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-text-soft: var(--text-soft);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-cyan: var(--cyan);
+  --color-mint: var(--mint);
+  --color-yellow-soft: var(--yellow-soft);
+
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --color-idle: var(--idle);
+  --color-idle-soft: var(--idle-soft);
+
+  /* =========================
+     FONTS
+  ========================= */
+
+  --font-sans:
+    "Inter",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --font-mono:
+    "JetBrains Mono",
+    "Fira Code",
+    ui-monospace,
+    monospace;
+
+  /* =========================
+     SHADOWS
+  ========================= */
+
+  --shadow-card: var(--shadow-card);
+  --shadow-glow: var(--shadow-glow);
+
+  /* =========================
+     RADII
+  ========================= */
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+}
+
+/* =========================
+   GLOBALS
+========================= */
+
+html {
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--gradient-start) 0%,
+      var(--gradient-mid-1) 27%,
+      var(--gradient-mid-2) 64%,
+      var(--gradient-end) 100%
+    );
+
+  background-attachment: fixed;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================
+   GLASS UTILITIES
+========================= */
+
+@utility glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid var(--border);
+
+  box-shadow: var(--shadow-card);
+}
+
+@utility glass-hover {
+  background: var(--surface-hover);
+}
+
+/* =========================
+   OPTIONAL SELECTION STYLING
+========================= */
+
+::selection {
+  background: oklch(0.82 0.12 250);
+  color: oklch(0.2 0.03 255);
+}
+
+
+/* =========================
+   MODERN MINIMAL SCROLLBAR
+========================= */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.18);
+  border-radius: 999px;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(2, 8, 23, 0.9);
+}
+
+/* Firefox */
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 23, 42, 0.18) transparent;
+}
