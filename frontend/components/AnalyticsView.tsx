@@ -600,7 +600,7 @@ export default function AnalyticsView() {
                     )}
                   </Pie>
 
-                  <Tooltip fontSize={10} />
+                  <Tooltip contentStyle={{ fontSize: '10px' }} />
 
                   <Legend
                     verticalAlign="bottom"
@@ -683,7 +683,7 @@ export default function AnalyticsView() {
                     )}
                   </Pie>
 
-                  <Tooltip fontSize={10} />
+                  <Tooltip contentStyle={{ fontSize: '10px' }} />
                 </PieChart>
               </ResponsiveContainer>
             ) : (
@@ -763,7 +763,7 @@ export default function AnalyticsView() {
                     tickLine={false}
                   />
 
-                  <Tooltip fontSize={9} />
+                  <Tooltip contentStyle={{ fontSize: '9px' }} />
 
                   <Bar
                     dataKey="count"
@@ -874,7 +874,7 @@ export default function AnalyticsView() {
                     tickLine={false}
                   />
 
-                  <Tooltip fontSize={9} />
+                  <Tooltip contentStyle={{ fontSize: '9px' }} />
 
                   <Legend
                     verticalAlign="top"
