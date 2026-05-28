@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useDashboardStore } from '../store/useDashboardStore';
 
-import type { Post } from 'shared';
+import type { Post } from '../shared';
 
 import {
   Network,
