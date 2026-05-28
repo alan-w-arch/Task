@@ -45,8 +45,8 @@ Task/
 │       ├── analytics/ # Raw SQL aggregates for charts data
 │       └── export/    # Zero-dependency CSV and streaming PDF generators
 ├── frontend/          # Next.js frontend with state hooks, charts, views, and modal drawers
-│   └── app/           # App router containing page, layouts, styles, and store hooks
-└── docker-compose.yml # Compose template for spinning up local PostgreSQL & Redis
+    └── app/           # App router containing page, layouts, styles, and store hooks
+
 ```
 
 ---
