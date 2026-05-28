@@ -9,7 +9,6 @@ import {
 } from '../store/useDashboardStore';
 
 import {
-  Youtube,
   MessageSquare,
   ChevronLeft,
   ChevronRight,
